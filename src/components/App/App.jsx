@@ -1,12 +1,17 @@
-import "./App.module.scss";
-import { Test } from "../test/test";
+import style from "./App.module.scss";
+import { Modal } from "../Modal/Modal";
+import { useState } from "react";
 
-function App() {
+const App = () => {
+  const [modalActive, setModalActive] = useState(true);
   return (
     <>
-      <Test />
+      <div className={style.App}></div>
+      <Modal active={modalActive} setActive={setModalActive}>
+        <p>lorem</p>
+      </Modal>
     </>
   );
-}
+};
 
 export default App;
