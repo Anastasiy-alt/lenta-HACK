@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
 
 export const HomePage = () => {
-  return <Navigate to="/my-other-page" replace />;
+  return <Navigate to="/login" replace />;
 };
