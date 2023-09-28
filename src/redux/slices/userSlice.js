@@ -10,7 +10,7 @@ export const logIn = createAsyncThunk(
       if (!response.ok) {
         throw new Error("Error");
       }
-      dispatch(userLogin(form));
+      dispatch(userLogin());
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -59,15 +59,19 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    userLogin(state, action) {
+    userLogin(state) {
       state.isAuth = true;
-      state.form.email = action.payload.email;
-      state.form.password = action.payload.password;
     },
     userLogOut(state) {
       state.form.email = null;
       state.form.password = null;
       state.isAuth = false;
+    },
+    setUserFormValue(state, action) {
+      return {
+        ...state,
+        form: { ...state.form, [action.payload.name]: action.payload.value },
+      };
     },
   },
   extraReducers: {
@@ -83,5 +87,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { userLogin, userLogOut } = userSlice.actions;
+export const { userLogin, userLogOut, setUserFormValue } = userSlice.actions;
 export default userSlice.reducer;

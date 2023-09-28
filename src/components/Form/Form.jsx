@@ -1,26 +1,31 @@
-import { useState } from "react";
+import {} from "react";
 import styles from "./form.module.scss";
+import { useSelector } from "react-redux";
 
 export const Form = ({ title, handleClick }) => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const formValue = (value) => {
+    dispatch(setUserFormValue(value.target.name, value.target.value));
+  };
+
   return (
     <>
-      <div className={styles.form}>
+      <form className={styles.form} onSubmit={formSubmit}>
         <input
           type="email"
+          name="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={formValue}
           placeholder="email"
         ></input>
         <input
           type="password"
-          value={pass}
-          onChange={(e) => setPass(e.target.value)}
+          name="password"
+          value={password}
+          onChange={formValue}
           placeholder="password"
         ></input>
-        <button onClick={handleClick}>{title}</button>
-      </div>
+        <button onClick={() => handleClick(email, pass)}>{title}</button>
+      </form>
     </>
   );
 };
