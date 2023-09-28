@@ -7,7 +7,7 @@ import { LoginPage } from "../../pages/LoginPage";
 import { RegisterPage } from "../../pages/RegisterPage";
 
 export const App = () => {
-  // const [modalActive, setModalActive] = useState(true);
+  const [modalActive, setModalActive] = useState(false);
   return (
     <>
       <Routes>
@@ -16,9 +16,9 @@ export const App = () => {
         <Route path="register" element={<RegisterPage />} />
       </Routes>
 
-      {/* <Modal active={modalActive} setActive={setModalActive}>
+      <Modal active={modalActive} setActive={setModalActive}>
         <p>lorem</p>
-      </Modal> */}
+      </Modal>
     </>
   );
 };
