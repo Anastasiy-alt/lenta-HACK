@@ -5,15 +5,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../redux/slices/userSlice";
 
 export const Login = () => {
-  const { form } = useSelector((store) => store.user);
-  const dispatch = useDispatch();
+  // const { form } = useSelector((store) => store.user);
+  // const dispatch = useDispatch();
 
-  const handleLogin = (form) => {
-    dispatch(logIn(form), () => navigate("/"));
-  };
+  // const handleLogin = (form) => {
+  //   dispatch(logIn(form), () => navigate("/"));
+  // };
   return (
-    <>
-      <Form title="sign in" handleClick={handleLogin(form)} />
-    </>
+    <div className={styles.login}>
+      <h1 className={styles.title}>Авторизация</h1>
+      <p className={styles.text}>
+        Пожалуйста, введите учетные <br /> данные для входа
+      </p>
+      <Form title="Войти" />
+    </div>
   );
 };

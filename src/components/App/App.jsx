@@ -3,11 +3,13 @@ import { Modal } from "../Modal/Modal";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { HomePage } from "../../pages/HomePage";
-import { LoginPage } from "../../pages/LoginPage";
+import { LoginPage } from "../../pages/LoginPage/LoginPage";
 import { RegisterPage } from "../../pages/RegisterPage";
+import { useDispatch, useSelector } from "react-redux";
 
 export const App = () => {
-  const [modalActive, setModalActive] = useState(false);
+  const dispatch = useDispatch();
+  const { isOpen } = useSelector((store) => store.modal);
   return (
     <>
       <Routes>
@@ -16,9 +18,7 @@ export const App = () => {
         <Route path="register" element={<RegisterPage />} />
       </Routes>
 
-      <Modal active={modalActive} setActive={setModalActive}>
-        <p>lorem</p>
-      </Modal>
+      <Modal active={!isOpen}></Modal>
     </>
   );
 };
