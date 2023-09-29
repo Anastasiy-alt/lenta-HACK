@@ -1,2 +1,35 @@
+@import "../../styles/common/mixins";
+@import "../../styles/common/variables";
+
 .login {
+  display: flex;
+  flex-direction: column;
+  margin: 32px;
+  min-width: 396px;
 }
+
+.login_loader {
+  display: flex;
+  margin: 32px;
+  align-items: center;
+  justify-content: center;
+  min-width: 396px;
+  height: 543px;
+}
+
+.title {
+  @include font-parametr(700, 34px, 128%, $accent-text-color);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.text {
+  @include font-parametr(400, 20px, 136%, $auth-default-text-color);
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+// .error_text {
+//   @include font-parametr(400, 16px, 136%, $auth-error-color);
+//   text-align: center;
+// }

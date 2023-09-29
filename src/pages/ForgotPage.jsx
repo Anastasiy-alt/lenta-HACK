@@ -1,16 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Login } from "../components/Login/Login";
 import { Modal } from "../components/Modal/Modal";
-import { Form } from "../components/Form/Form";
-import { useDispatch, useSelector } from "react-redux";
+import { Forgot } from "../components/Forgot/Forgot";
 
-export const LoginPage = () => {
-  const dispatch = useDispatch();
+export const ForgotPage = () => {
   const { isOpen } = useSelector((store) => store.modal);
   return (
     <Modal active={isOpen}>
-      <Login />
+      <Forgot />
     </Modal>
   );
 };

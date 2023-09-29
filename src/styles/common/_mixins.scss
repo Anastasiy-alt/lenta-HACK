@@ -1,0 +1,14 @@
+@mixin font-parametr($weight, $size, $height, $color) {
+  font: {
+    size: $size;
+    weight: $weight;
+  }
+  line-height: $height;
+  color: $color;
+}
+
+@mixin display($display: block, $flexDir: row, $justCont: flex-start) {
+  display: $display;
+  flex-direction: $flexDir;
+  justify-content: $justCont;
+}
