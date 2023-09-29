@@ -42,7 +42,9 @@ export const Form = ({ title, handleClick }) => {
           <label className={styles.label} for="passCheckbox">
             Запомнить меня
           </label>
-          <Link className={styles.link}>Не помню пароль</Link>
+          <Link className={styles.link} to="/forgot">
+            Не помню пароль
+          </Link>
         </div>
         <button className={styles.button} type="submit">
           {title}

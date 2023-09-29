@@ -8,6 +8,7 @@
 .checkbox_container {
   display: flex;
   margin: 20px 0 116px 0;
+  align-items: center;
 }
 
 .link {
@@ -34,7 +35,7 @@
 .button {
   height: 56px;
   border-radius: 12px;
-  background: $accent-text-color;
+  background: $accent-button-color;
   @include font-parametr(400, 18px, normal, #ffffff);
 }
 

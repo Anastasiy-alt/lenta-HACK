@@ -1,7 +1,12 @@
 .modal {
+  background-color: #001545;
+  background-image: url("../../image/lenta_bg_img.png");
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1500px 595px;
+
   position: fixed;
   top: 0;
   left: 0;

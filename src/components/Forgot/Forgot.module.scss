@@ -1,0 +1,39 @@
+@import "../../styles/common/mixins";
+@import "../../styles/common/variables";
+
+.forgot {
+  display: flex;
+  flex-direction: column;
+  margin: 32px;
+  max-width: 396px;
+}
+
+.title {
+  @include font-parametr(700, 34px, 128%, $accent-text-color);
+  text-align: center;
+}
+
+.img {
+  width: 133px;
+  height: 120px;
+  margin: 96px auto 28px;
+}
+
+.text {
+  @include font-parametr(400, 20px, 136%, $forgot-pass-text-color);
+  text-align: center;
+  margin-bottom: 96px;
+}
+
+.span {
+  @include font-parametr(700, 20px, 136%, $forgot-pass-text-color);
+}
+
+.button {
+  height: 56px;
+  border-radius: 12px;
+  background: $accent-button-color;
+  @include font-parametr(400, 18px, normal, $auth-btn-text-color);
+  @include display(flex, null, center);
+  align-items: center;
+}
