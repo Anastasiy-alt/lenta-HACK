@@ -6,21 +6,23 @@ import { Link } from "react-router-dom";
 
 export const Form = ({ title, handleClick }) => {
   const dispatch = useDispatch();
-  // const { email, password } = useSelector((store) => store.user.form);
+  const { email, password } = useSelector((store) => store.user.form);
 
   const formValue = (value) => {
-    dispatch(setUserFormValue(value.target.name, value.target.value));
+    dispatch(
+      setUserFormValue({ name: value.target.name, value: value.target.value })
+    );
   };
 
   return (
     <>
-      <form className={styles.form} onClick={handleClick}>
+      <form className={styles.form} onSubmit={handleClick}>
         <p className={styles.text}>Логин</p>
         <input
           type="email"
           name="email"
-          // value={email}
-          // onChange={formValue}
+          value={email}
+          onChange={formValue}
           placeholder="ivanov@lenta.com"
           className={styles.input}
         ></input>
@@ -28,8 +30,8 @@ export const Form = ({ title, handleClick }) => {
         <input
           type="password"
           name="password"
-          // value={password}
-          // onChange={formValue}
+          value={password}
+          onChange={formValue}
           placeholder="*********"
           className={styles.input}
         ></input>
@@ -39,7 +41,7 @@ export const Form = ({ title, handleClick }) => {
             type="checkbox"
             id="passCheckbox"
           ></input>
-          <label className={styles.label} for="passCheckbox">
+          <label className={styles.label} htmlFor="passCheckbox">
             Запомнить меня
           </label>
           <Link className={styles.link} to="/forgot">

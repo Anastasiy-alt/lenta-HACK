@@ -8,6 +8,15 @@
   min-width: 396px;
 }
 
+.login_loader {
+  display: flex;
+  margin: 32px;
+  align-items: center;
+  justify-content: center;
+  min-width: 396px;
+  height: 543px;
+}
+
 .title {
   @include font-parametr(700, 34px, 128%, $accent-text-color);
   margin-bottom: 12px;

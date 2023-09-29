@@ -47,12 +47,12 @@ const setFulfilled = (state, action) => {
 
 const initialState = {
   form: {
-    email: null,
-    password: null,
+    email: "",
+    password: "",
   },
   isAuth: false,
   error: null,
-  status: null,
+  loader: false,
 };
 
 const userSlice = createSlice({
@@ -68,15 +68,12 @@ const userSlice = createSlice({
       state.isAuth = false;
     },
     setUserFormValue(state, action) {
-      return {
-        ...state,
-        form: { ...state.form, [action.payload.name]: action.payload.value },
-      };
+      state.form[action.payload.name] = action.payload.value;
     },
   },
   extraReducers: {
     [logIn.pending]: (state) => {
-      state.status = "loading...";
+      state.loader = true;
       state.error = null;
     },
     [logIn.fulfilled]: setFulfilled,
