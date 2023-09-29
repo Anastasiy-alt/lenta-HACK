@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export const Form = ({ title, handleClick }) => {
   const dispatch = useDispatch();
-  const { email, password } = useSelector((store) => store.user.form);
+  const { form, error } = useSelector((store) => store.user);
 
   const formValue = (value) => {
     dispatch(
@@ -21,7 +21,7 @@ export const Form = ({ title, handleClick }) => {
         <input
           type="email"
           name="email"
-          value={email}
+          value={form.email}
           onChange={formValue}
           placeholder="ivanov@lenta.com"
           className={styles.input}
@@ -30,7 +30,7 @@ export const Form = ({ title, handleClick }) => {
         <input
           type="password"
           name="password"
-          value={password}
+          value={form.password}
           onChange={formValue}
           placeholder="*********"
           className={styles.input}
@@ -48,6 +48,10 @@ export const Form = ({ title, handleClick }) => {
             Не помню пароль
           </Link>
         </div>
+        <p className={error ? styles.error_text : styles.error_text_hidden}>
+          Ошибка входа. Проверьте правильность
+          <br /> логина и пароля
+        </p>
         <button className={styles.button} type="submit">
           {title}
         </button>

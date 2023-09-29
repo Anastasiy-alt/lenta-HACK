@@ -5,11 +5,6 @@
   display: flex;
   flex-direction: column;
 }
-.checkbox_container {
-  display: flex;
-  margin: 20px 0 116px 0;
-  align-items: center;
-}
 
 .link {
   @include font-parametr(400, 16px, normal, $link-color);
@@ -53,4 +48,22 @@
 .label {
   margin-left: 12px;
   @include font-parametr(400, 16px, normal, $auth-default-text-color);
+}
+
+.error_text {
+  @include font-parametr(400, 16px, 137%, $auth-error-color);
+  text-align: center;
+  margin: 52px 0 20px 0;
+}
+
+.error_text_hidden {
+  visibility: hidden;
+  @extend .error_text;
+}
+
+.checkbox_container {
+  display: flex;
+  margin: 20px 0 0 0;
+  align-items: center;
+  position: relative;
 }

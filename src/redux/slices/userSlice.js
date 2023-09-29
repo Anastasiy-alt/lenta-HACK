@@ -51,7 +51,7 @@ const initialState = {
     password: "",
   },
   isAuth: false,
-  error: null,
+  error: false,
   loader: false,
 };
 
@@ -70,6 +70,9 @@ const userSlice = createSlice({
     setUserFormValue(state, action) {
       state.form[action.payload.name] = action.payload.value;
     },
+    setUserError(state) {
+      state.error = true;
+    },
   },
   extraReducers: {
     [logIn.pending]: (state) => {
@@ -84,5 +87,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { userLogin, userLogOut, setUserFormValue } = userSlice.actions;
+export const { userLogin, userLogOut, setUserFormValue, setUserError } =
+  userSlice.actions;
 export default userSlice.reducer;
