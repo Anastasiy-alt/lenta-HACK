@@ -1,0 +1,17 @@
+@import "../../styles/common/typography";
+@import "../../styles/common/color";
+
+.label {
+  @extend %main_text;
+  color: $black;
+  width: 410px;
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+}
+
+.link {
+  color: $link;
+}

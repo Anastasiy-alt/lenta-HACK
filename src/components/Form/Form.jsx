@@ -1,17 +1,23 @@
 import {} from "react";
 import styles from "./form.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserFormValue } from "../../redux/slices/userSlice";
+import { setUserFormValue, setRememberMe } from "../../redux/slices/userSlice";
 import { Link } from "react-router-dom";
+import { CheckBox } from "../CheckBox/CheckBox";
 
 export const Form = ({ title, handleClick }) => {
   const dispatch = useDispatch();
-  const { form, error } = useSelector((store) => store.user);
+  const { form, error, isRemember } = useSelector((store) => store.user);
+  console.log(isRemember);
 
   const formValue = (value) => {
     dispatch(
       setUserFormValue({ name: value.target.name, value: value.target.value })
     );
+  };
+
+  const handleCheckboxChange = (event) => {
+    dispatch(setRememberMe(event.target.checked));
   };
 
   return (
@@ -36,11 +42,11 @@ export const Form = ({ title, handleClick }) => {
           className={styles.input}
         ></input>
         <div className={styles.checkbox_container}>
-          <input
-            className={styles.checkbox}
-            type="checkbox"
+          <CheckBox
             id="passCheckbox"
-          ></input>
+            checked={isRemember}
+            onChange={handleCheckboxChange}
+          />
           <label className={styles.label} htmlFor="passCheckbox">
             Запомнить меня
           </label>
