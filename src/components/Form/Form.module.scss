@@ -28,9 +28,7 @@
 }
 
 .button {
-  height: 56px;
-  border-radius: 12px;
-  background: $accent-button-color;
+  @include button(56px);
   @include font-parametr(400, 18px, normal, #ffffff);
 }
 

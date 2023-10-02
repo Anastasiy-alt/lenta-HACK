@@ -169,16 +169,17 @@
 }
 
 .selected_btn {
-  background-color: $accent_1;
+  @include button(49px, 280px);
   color: $bgFill;
   @extend %input_loginBtn_selectSect_text;
-  border-radius: 12px;
   position: absolute;
-  min-width: 280px;
-  text-align: center;
-  height: 49px;
   bottom: 48px;
   right: 48px;
+
+  &__disable {
+    opacity: 0.25;
+    @extend .selected_btn;
+  }
 }
 
 .selected_box {

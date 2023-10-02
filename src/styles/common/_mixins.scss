@@ -33,3 +33,16 @@
     border: 1px solid $accent_1;
   }
 }
+
+@mixin button($height: 40px, $width: null) {
+  width: $width;
+  height: $height;
+  border-radius: 12px;
+  background: $accent_1;
+  transition: all 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $accent_2;
+  }
+}

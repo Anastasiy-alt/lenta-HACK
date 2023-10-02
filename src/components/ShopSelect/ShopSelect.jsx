@@ -188,7 +188,15 @@ export const ShopSelect = () => {
                 <h2 className={styles.selected_subtitle}>Ничего не выбрано</h2>
               )}
             </div>
-            <button className={styles.selected_btn}>Начать работу</button>
+            <button
+              className={
+                selectedItems.length
+                  ? styles.selected_btn
+                  : styles.selected_btn__disable
+              }
+            >
+              Начать работу
+            </button>
           </div>
         </div>
       </div>
