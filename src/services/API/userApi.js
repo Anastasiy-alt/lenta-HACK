@@ -1,4 +1,4 @@
-const url = "";
+export const url = "http://94.131.100.195/api/v1/auth/";
 
 const checkResponse = (res) => {
   if (res.ok) {
@@ -7,15 +7,15 @@ const checkResponse = (res) => {
   return Promise.reject(`Ошибка ${res.status}`);
 };
 
-const request = (url, options) => {
+export const request = (url, options) => {
   return fetch(url, options).then(checkResponse);
 };
 
 export const loginUserApi = (form) => {
-  return request(`${url}`, {
+  return request(`${url}token/login/`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json;charset=utf-8",
+      "Content-Type": "application/json;",
     },
     body: JSON.stringify({
       email: form.email,

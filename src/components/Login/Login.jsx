@@ -4,15 +4,18 @@ import { Form } from "../Form/Form";
 import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../redux/slices/userSlice";
 import { Loader } from "../Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
-  // const { form } = useSelector((store) => store.user);
+  const { form, loader } = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  const { loader } = useSelector((store) => store.user);
+  const navigate = useNavigate();
+
   const handleLogin = (event) => {
     event.preventDefault();
-    // dispatch(logIn(form), () => navigate("/"));
+    dispatch(logIn({ form: form, callback: () => navigate("/") }));
   };
+
   return loader ? (
     <div className={styles.login_loader}>
       <Loader />
