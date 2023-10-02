@@ -1,0 +1,55 @@
+//Основной заголовок
+%main_title {
+  font-size: 34px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+}
+
+//Заголовок второго уровня
+%second_level_heading {
+  font-size: 28px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+}
+
+//Большой текст
+%large_text {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+//Большой текст Medium
+%large_text_medium {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+//Основной текст
+%main_text {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+//Текст для Imput, кнопок Login, Выбрать раздел
+%input_loginBtn_selectSect_text {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+//Текст для Кнопок
+%button_text {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
