@@ -1,3 +1,5 @@
+@import "./color";
+
 @mixin font-parametr($weight, $size, $height, $color) {
   font: {
     size: $size;
@@ -11,4 +13,23 @@
   display: $display;
   flex-direction: $flexDir;
   justify-content: $justCont;
+}
+
+@mixin input($width: 410px) {
+  border-radius: 12px;
+  background-color: $inputBg;
+  min-height: 50px;
+  max-width: $width;
+  padding-left: 46px;
+  background-image: url("../../image/shopSelect/search.svg");
+  background-repeat: no-repeat;
+  background-position: left 16px bottom 14px;
+
+  &:hover {
+    border: 1px solid $inputHover;
+  }
+
+  &:focus {
+    border: 1px solid $accent_1;
+  }
 }
