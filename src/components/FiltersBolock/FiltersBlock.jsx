@@ -15,25 +15,23 @@ const title3 = 'Вид'
 export const FilterBlock = () => {
     const status = false
 
-
-
     return (
         <article className={styles.filters}>
             <Filter
-            options={options1}
-            defaultTitle={defaultTitle1}
-            title={title1}
-            size= '258px' />
+                options={options1}
+                defaultTitle={defaultTitle1}
+                title={title1}
+                size='258px' />
             <Filter
-            options={options2}
-            defaultTitle={defaultTitle2}
-            title={title2}
-            size='224px' />
+                options={options2}
+                defaultTitle={defaultTitle2}
+                title={title2}
+                size='224px' />
             <Filter
-            options={options3}
-            defaultTitle={defaultTitle3}
-            title={title3}
-            size='163px' />
+                options={options3}
+                defaultTitle={defaultTitle3}
+                title={title3}
+                size='163px' />
 
             <button className={styles.filters__button} disabled={status}>Применить фильтр</button>
         </article>

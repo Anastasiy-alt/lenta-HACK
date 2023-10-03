@@ -17,13 +17,12 @@ export const App = () => {
 
   return (
     <>
-    <FilterBlock />
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="forgot" element={<ForgotPage />} />
         <Route path="shop" element={<ShopSelectionPage />} />
-      </Routes> */}
+      </Routes>
 
       {/* <Modal active={!isOpen}></Modal> */}
     </>
