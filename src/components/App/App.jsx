@@ -7,6 +7,7 @@ import { LoginPage } from "../../pages/LoginPage";
 import { ForgotPage } from "../../pages/ForgotPage";
 import { ShopSelectionPage } from "../../pages/ShopSelectionPage";
 import { useDispatch, useSelector } from "react-redux";
+import { FilterProductCategories } from "../FilterProductCategories/FilterProductCategories";
 
 export const App = () => {
   // const dispatch = useDispatch();

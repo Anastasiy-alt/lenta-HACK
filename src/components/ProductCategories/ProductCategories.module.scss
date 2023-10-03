@@ -1,0 +1,40 @@
+@import "../../styles/common/mixins";
+@import "../../styles/common/variables";
+
+
+.categories__listTitle {
+    @include font-parametr(700, 22px, 100%, $forgot-pass-text-color);
+}
+
+.categories__listTitle:nth-child(3) {
+    margin-top: 48px;
+}
+
+.categories__listTitle:nth-child(5) {
+    margin-top: 48px;
+}
+
+.categories__item {
+    margin-top: 24px;
+    @include font-parametr(400, 18px, 100%, $forgot-pass-text-color);
+    max-width: 279px;
+    width: fit-content;
+}
+
+.categories__itemCheckHidden {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    clip-path: inset(0 0 0 0);
+}
+
+.categories__itemCheckHidden:checked + .categories__itemCheck {
+    margin-left: 4px;
+    width: 24px;
+    height: 12px;
+    background-image: url(../../image/checkmark.svg);
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
