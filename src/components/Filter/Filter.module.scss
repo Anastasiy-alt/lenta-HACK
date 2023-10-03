@@ -2,7 +2,7 @@
 @import "../../styles/common/variables";
 
 .dropdown__title {
-    @include font-parametr(400, 20px, 100%, $forgot-pass-text-color);
+    @include font-parametr(400, 20px, normal, $forgot-pass-text-color);
     margin-bottom: 12px;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .dropdown__selected {
-    @include font-parametr(400, 18px, 100%, $auth-default-text-color);
+    @include font-parametr(400, 18px, normal, $auth-default-text-color);
     cursor: default;
     display: flex;
     flex-direction: row;
@@ -62,7 +62,7 @@
     padding-left: 24px;
     padding-top: 12px;
     padding-bottom: 12px;
-    @include font-parametr(400, 18px, 100%, $forgot-pass-text-color);
+    @include font-parametr(400, 18px, normal, $forgot-pass-text-color);
 }
 
 .dropdown__item:hover {

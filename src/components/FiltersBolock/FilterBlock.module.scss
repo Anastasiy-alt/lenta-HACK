@@ -17,7 +17,7 @@
     padding: 0px 67px 0px 68px;
     justify-content: center;
     align-items: center;
-    @include font-parametr(400, 16px, 100%, $auth-btn-text-color);
+    @include font-parametr(400, 16px, normal, $auth-btn-text-color);
 }
 
 .filters__button:disabled {
