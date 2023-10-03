@@ -19,9 +19,7 @@
 .title {
   @include font-parametr(500, 24px, normal, $accent_2);
 }
-.inner {
-  padding-right: 30px;
-}
+
 .selected {
   overflow: hidden;
   margin-top: 20px;
@@ -52,7 +50,7 @@
   &_item {
     @extend %main_text;
     color: $description;
-    flex-wrap: wrap;
+    overflow-wrap: break-word;
   }
 }
 

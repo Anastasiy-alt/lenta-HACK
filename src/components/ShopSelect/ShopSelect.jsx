@@ -3,17 +3,26 @@ import styles from "./shopSelect.module.scss";
 import img from "../../image/shopSelect/cross.svg";
 import arrow from "../../image/shopSelect/region_select_arrow.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { getCity, setCurrentCity } from "../../redux/slices/shopSlice";
+import {
+  getCity,
+  setCurrentCity,
+  setSelectedStore,
+} from "../../redux/slices/shopSlice";
 import { nanoid } from "nanoid";
 import { CheckBox } from "../CheckBox/CheckBox";
+import { useNavigate } from "react-router-dom";
 
 export const ShopSelect = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [selectedItems, setSelectedItems] = useState([]);
+  const navigate = useNavigate();
   const [selectAll, setSelectAll] = useState(false);
   const [checkboxStates, setCheckboxStates] = useState([]);
   const dispatch = useDispatch();
-  const { cityArr, currentCity } = useSelector((store) => store.shop);
+  const { cityArr, currentCity, selectedStore } = useSelector(
+    (store) => store.shop
+  );
+
+  console.log(selectedStore);
 
   useEffect(() => {
     setCheckboxStates(new Array(numb).fill(false));
@@ -42,14 +51,16 @@ export const ShopSelect = () => {
     setSelectAll(event.target.checked);
     setCheckboxStates(new Array(numb).fill(event.target.checked));
     if (event.target.checked) {
-      // setSelectedItems(shopFilter(currentCity));
       if (
-        !selectedItems.some((item) => shopFilter(currentCity).includes(item))
+        !selectedStore.some((item) => shopFilter(currentCity).includes(item))
       ) {
-        setSelectedItems([...selectedItems, ...shopFilter(currentCity)]);
+        // setSelectedItems([...selectedItems, ...shopFilter(currentCity)]);
+        dispatch(
+          setSelectedStore([...selectedStore, ...shopFilter(currentCity)])
+        );
       }
     } else {
-      setSelectedItems([]);
+      dispatch(setSelectedStore([]));
     }
   };
   let numb = shopFilter(currentCity).length;
@@ -60,7 +71,7 @@ export const ShopSelect = () => {
     newCheckboxStates[index] = event.target.checked;
     setCheckboxStates(newCheckboxStates);
 
-    let newSelectedItems = [...selectedItems];
+    let newSelectedItems = [...selectedStore];
 
     // Если флажок установлен и элемент еще не в selectedItems, добавьте его
     if (
@@ -80,7 +91,8 @@ export const ShopSelect = () => {
       );
     }
 
-    setSelectedItems(newSelectedItems);
+    // setSelectedItems(newSelectedItems);
+    dispatch(setSelectedStore(newSelectedItems));
     // Проверяем, выбраны ли все чекбоксы
     const allChecked = newCheckboxStates.every((checked) => checked);
     setSelectAll(allChecked);
@@ -88,10 +100,11 @@ export const ShopSelect = () => {
 
   const handleRemoveItem = (itemToRemove) => {
     // Удалите элемент из списка выбранных элементов
-    const newSelectedItems = selectedItems.filter(
+    const newSelectedItems = selectedStore.filter(
       (item) => item !== itemToRemove
     );
-    setSelectedItems(newSelectedItems);
+    // setSelectedItems(newSelectedItems);
+    dispatch(setSelectedStore(newSelectedItems));
 
     // Найдите индекс элемента в списке всех элементов
     const index = shopFilter(currentCity).indexOf(itemToRemove);
@@ -145,7 +158,7 @@ export const ShopSelect = () => {
               label="Выбрать все"
               // checked={selectAll}
               checked={shopFilter(currentCity).every((val) =>
-                selectedItems.includes(val)
+                selectedStore.includes(val)
               )}
               onChange={handleSelectAllChange}
             />
@@ -159,7 +172,7 @@ export const ShopSelect = () => {
                     {val.store}
                     <CheckBox
                       label={val.store}
-                      checked={selectedItems.some(
+                      checked={selectedStore.some(
                         (item) => item.store === val.store
                       )}
                       onChange={(event) => handleCheckboxChange(index, event)}
@@ -175,9 +188,9 @@ export const ShopSelect = () => {
           <div className={styles.selected_container}>
             <p className={styles.selected_title}>Выбранные ТК</p>
             <div className={styles.selected_item}>
-              {selectedItems.length ? (
+              {selectedStore.length ? (
                 <ul className={styles.selected_box}>
-                  {selectedItems.map((item) => (
+                  {selectedStore.map((item) => (
                     <li key={nanoid(6)}>
                       <p>{item.store}</p>
                       <img src={img} onClick={() => handleRemoveItem(item)} />
@@ -190,10 +203,11 @@ export const ShopSelect = () => {
             </div>
             <button
               className={
-                selectedItems.length
+                selectedStore.length
                   ? styles.selected_btn
                   : styles.selected_btn__disable
               }
+              onClick={() => navigate("/")}
             >
               Начать работу
             </button>
