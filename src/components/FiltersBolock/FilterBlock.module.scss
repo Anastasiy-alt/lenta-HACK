@@ -1,0 +1,36 @@
+@import "../../styles/common/mixins";
+@import "../../styles/common/variables";
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    column-gap: 32px;
+    align-items: flex-end;
+}
+
+.filters__button {
+    background: $accent-button-color;
+    border-radius: 12px;
+    display: flex;
+    width: 280px;
+    height: 49px;
+    padding: 0px 67px 0px 68px;
+    justify-content: center;
+    align-items: center;
+    @include font-parametr(400, 16px, 100%, $auth-btn-text-color);
+}
+
+.filters__button:disabled {
+    opacity: 0.25;
+    background: $accent-button-color;
+}
+
+.filters__button:disabled:hover {
+    opacity: 0.25;
+    background: $accent-button-color;
+    cursor: auto;
+}
+
+.filters__button:hover {
+    background: $accent-text-color;
+}
