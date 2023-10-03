@@ -1,0 +1,52 @@
+@import "../../styles/common/mixins";
+
+.container {
+  display: inline-block;
+  margin: 40px;
+  position: relative;
+}
+
+.serchString {
+  @include input(1081px);
+}
+
+.serchString_header {
+  @include input(830px);
+}
+
+.button_container {
+  position: absolute;
+  @include display(flex, row, space-between);
+  width: 204px;
+  align-items: center;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.without_searchBtn_container {
+  @extend .button_container;
+  width: 24px;
+  right: 16px;
+  top: 13px;
+}
+
+.clear_button {
+  background-image: url(../../image/searchString/search_string_cross.svg);
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  transition: background-image 0.4s ease;
+
+  &:hover {
+    background-image: url(../../image/cross.svg);
+  }
+}
+
+.search_button {
+  @include button(50px, 160px);
+
+  &_disable {
+    display: none;
+  }
+}

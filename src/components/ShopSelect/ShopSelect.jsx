@@ -22,8 +22,6 @@ export const ShopSelect = () => {
     (store) => store.shop
   );
 
-  console.log(selectedStore);
-
   useEffect(() => {
     setCheckboxStates(new Array(numb).fill(false));
   }, [currentCity]);
