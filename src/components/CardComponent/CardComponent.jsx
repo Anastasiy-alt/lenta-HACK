@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./CardComponent.module.scss";
 
-const options = ['12 мес', '7 нед', '14 дн']
+const wape = 13;
+const max = 16;
+const min = 10;
+const title = 'Крылышки куриные гриль по-мексикански, весовые, Россия';
+
 
 export const CardComponent = () => {
 
@@ -24,12 +28,22 @@ export const CardComponent = () => {
 
     const remainingValues = dropdownValues[selectedValue];
 
+    // костыли
+    const [green, setGreen] = useState(true)
+    const [save, setSave] = useState(false)
+    const toggleSave = () => {
+        setSave(!save);
+    };
+    //
 
     return (
         <article className={styles.card}>
-            <h3 className={styles.card__title}>Крылышки куриные гриль по-мексикански, весовые, Россия</h3>
+            <div className={styles.card__header}>
+                <h3 className={styles.card__title}>{title}</h3>
+                <button className={`${styles.card__save} ${save && styles.card__saveSelect}`} onClick={toggleSave}></button>
+            </div>
             <div className={styles.card__wape}>
-                <p className={`${styles.card__subtitle} ${styles.card__subtitle_type_wape}`}>Среднее Значение Wape за</p>
+                <p className={styles.card__subtitle}>Среднее Значение Wape за</p>
                 <div className={styles.dropdown} onClick={toggleDropdown}>
                     <div className={styles.dropdown__selected}>
                         {selectedValue}
@@ -37,7 +51,6 @@ export const CardComponent = () => {
                     </div>
                     {isOpen && (
                         <ul className={`${styles.dropdown__list} ${isOpen && styles.dropdown__list_open}`}>
-                        {/* <ul className={styles.dropdown__list}> */}
                             {remainingValues.map((value) => (
                                 <li
                                     key={value}
@@ -50,6 +63,21 @@ export const CardComponent = () => {
                         </ul>
                     )}
                 </div>
+            </div>
+            <span className={`${styles.card__stat} ${green ? styles.card__stat_type_green : styles.card__stat_type_red} `}>{wape}%</span>
+            <div className={styles.card__footer}>
+                <div className={styles.card__maxmin}>
+                    <div>
+                        <p className={styles.card__maxminName}>Максимальное</p>
+                        <span className={`${styles.card__maxminRes} ${styles.card__stat_type_red}`}>{max}%</span>
+                    </div>
+                    <div>
+                        <p className={styles.card__maxminName}>Минимальное</p>
+                        <span className={`${styles.card__maxminRes} ${styles.card__stat_type_green}`}>{min}%</span>
+                    </div>
+
+                </div>
+                <button className={styles.card_diagram}></button>
             </div>
         </article>
     )
