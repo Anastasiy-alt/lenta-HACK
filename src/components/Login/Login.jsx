@@ -13,7 +13,7 @@ export const Login = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    dispatch(logIn({ form: form, callback: () => navigate("/") }));
+    dispatch(logIn({ form: form, callback: () => navigate("/shop") }));
   };
 
   return loader ? (
