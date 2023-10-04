@@ -6,6 +6,9 @@ import { HomePage } from "../../pages/HomePage";
 import { LoginPage } from "../../pages/LoginPage";
 import { ForgotPage } from "../../pages/ForgotPage";
 import { ShopSelectionPage } from "../../pages/ShopSelectionPage";
+import { FavoritesPage } from "../../pages/FavoritesPage";
+import { ProfilePage } from "../../pages/ProfilePage";
+import { StatisticsPage } from "../../pages/StatisticsPage";
 import { useDispatch, useSelector } from "react-redux";
 import { FilterProductCategories } from "../FilterProductCategories/FilterProductCategories";
 
@@ -20,6 +23,9 @@ export const App = () => {
         <Route path="login" element={<LoginPage />} />
         <Route path="forgot" element={<ForgotPage />} />
         <Route path="shop" element={<ShopSelectionPage />} />
+        <Route path="favorites" element={<FavoritesPage />} />
+        <Route path="profile" element={<ProfilePage />} />
+        <Route path="statistics" element={<StatisticsPage />} />
       </Routes>
 
       {/* <Modal active={!isOpen}></Modal> */}
