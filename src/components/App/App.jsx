@@ -12,6 +12,7 @@ import { StatisticsPage } from "../../pages/StatisticsPage";
 import { useDispatch, useSelector } from "react-redux";
 import { FilterProductCategories } from "../FilterProductCategories/FilterProductCategories";
 
+
 export const App = () => {
   // const dispatch = useDispatch();
   // const { isOpen } = useSelector((store) => store.modal);
@@ -27,7 +28,6 @@ export const App = () => {
         <Route path="profile" element={<ProfilePage />} />
         <Route path="statistics" element={<StatisticsPage />} />
       </Routes>
-
       {/* <Modal active={!isOpen}></Modal> */}
     </>
   );
