@@ -1,0 +1,76 @@
+@import "../../styles/common/mixins";
+@import "../../styles/common/color";
+
+.header {
+  width: 1920px;
+  height: 80px;
+  border-bottom: 1px solid rgba(0, 60, 150, 0.25);
+  @include display(flex, row, space-between);
+  background-color: $bgFill;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+.container {
+  @include display(flex, row, space-between);
+  width: 237px;
+  align-items: center;
+  @include font-parametr(500, 18px, normal, $black);
+  margin-left: 458px;
+  height: inherit;
+}
+
+.container_inHeader {
+  @extend .container;
+  margin-left: 70px;
+}
+
+.children_container {
+  width: 1141px;
+}
+
+.btn {
+  color: $black;
+}
+
+.active_btn {
+  border-bottom: 3px solid $accent_2;
+  height: inherit;
+  align-items: center;
+  display: flex;
+  color: $accent_2;
+}
+
+.icon_container {
+  @include display(flex, row, space-between);
+  width: 116px;
+  margin-right: 70px;
+  align-items: center;
+}
+
+.icon_btn {
+  width: 50px;
+  height: 50px;
+
+  &_profile {
+    @extend .icon_btn;
+    background-image: url(../../image/header/profile.svg);
+
+    &_focus {
+      background-image: url(../../image/header/profile_active.svg);
+      @extend .icon_btn;
+    }
+  }
+
+  &_favorites {
+    @extend .icon_btn;
+    background-image: url(../../image/header/favorites.svg);
+
+    &_focus {
+      @extend .icon_btn;
+      background-image: url(../../image/header/favorites_active.svg);
+    }
+  }
+}

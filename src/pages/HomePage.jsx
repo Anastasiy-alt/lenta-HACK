@@ -1,7 +1,45 @@
-import { Navigate } from "react-router-dom";
-import { getCookie } from "../utils/coockie";
+import { SerchString } from "../components/SerchString/SerchString";
+import { useEffect, useState } from "react";
+import { Header } from "../components/Header/Header";
+import { useRef } from "react";
 
 export const HomePage = () => {
-  return <div>{getCookie("auth_token")}</div>;
-  // <Navigate to="/login" replace />;
+  const [inHeader, setInHeader] = useState(false);
+
+  const headerRef = useRef(null);
+  const searchRef = useRef(null);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    const search = searchRef.current;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInHeader(false);
+        } else {
+          setInHeader(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (header && search) {
+      observer.observe(search);
+    }
+
+    return () => {
+      if (header && search) {
+        observer.unobserve(search);
+      }
+    };
+  }, []);
+
+  return (
+    <div>
+      <Header inHeader={inHeader} ref={headerRef} />
+
+      <SerchString ref={searchRef} />
+    </div>
+  );
 };
