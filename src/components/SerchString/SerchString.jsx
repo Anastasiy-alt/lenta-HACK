@@ -1,17 +1,14 @@
-import React, { useRef } from "react";
+import React, { forwardRef } from "react";
 import styles from "./serchString.module.scss";
 import { useState } from "react";
 
-export const SerchString = ({ inHeader }) => {
+export const SerchString = forwardRef((props, ref) => {
+  const { inHeader } = props;
   const [isFocused, setIsFocused] = useState(false);
   const [hasText, setHasText] = useState(``);
 
   const handleFocus = () => {
     setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
   };
 
   const handleChange = (event) => {
@@ -24,10 +21,16 @@ export const SerchString = ({ inHeader }) => {
 
   const find = () => {
     setIsFocused(false);
+    console.log("dwq");
   };
 
   return (
-    <div className={styles.container} onFocus={handleFocus}>
+    <div
+      className={styles.container}
+      onFocus={handleFocus}
+      id="searchString"
+      ref={ref}
+    >
       <input
         className={inHeader ? styles.serchString_header : styles.serchString}
         type="text"
@@ -56,4 +59,4 @@ export const SerchString = ({ inHeader }) => {
       )}
     </div>
   );
-};
+});

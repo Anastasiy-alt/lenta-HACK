@@ -1,19 +1,45 @@
-import { Navigate } from "react-router-dom";
-import { getCookie } from "../utils/coockie";
-import { SelectedStoreCard } from "../components/SelectedStoreCard/SelectedStoreCard";
 import { SerchString } from "../components/SerchString/SerchString";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { Header } from "../components/Header/Header";
+import { useRef } from "react";
 
 export const HomePage = () => {
+  const [inHeader, setInHeader] = useState(false);
+
+  const headerRef = useRef(null);
+  const searchRef = useRef(null);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    const search = searchRef.current;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInHeader(false);
+        } else {
+          setInHeader(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (header && search) {
+      observer.observe(search);
+    }
+
+    return () => {
+      if (header && search) {
+        observer.unobserve(search);
+      }
+    };
+  }, []);
+
   return (
     <div>
-      <SerchString inHeader={true} />
+      <Header inHeader={inHeader} ref={headerRef} />
+
+      <SerchString ref={searchRef} />
     </div>
   );
-  // <Navigate to="/login" replace />;
-  // getCookie("auth_token")
 };
-{
-  /* {<SelectedStoreCard />} */
-}
