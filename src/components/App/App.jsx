@@ -8,6 +8,7 @@ import { ForgotPage } from "../../pages/ForgotPage";
 import { ShopSelectionPage } from "../../pages/ShopSelectionPage";
 import { useDispatch, useSelector } from "react-redux";
 import { FilterProductCategories } from "../FilterProductCategories/FilterProductCategories";
+import { CardComponent } from "../CardComponent/CardComponent";
 
 export const App = () => {
   // const dispatch = useDispatch();
@@ -15,12 +16,13 @@ export const App = () => {
 
   return (
     <>
-      <Routes>
+    <CardComponent />
+      {/* <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="forgot" element={<ForgotPage />} />
         <Route path="shop" element={<ShopSelectionPage />} />
-      </Routes>
+      </Routes> */}
 
       {/* <Modal active={!isOpen}></Modal> */}
     </>
