@@ -1,7 +1,8 @@
-import { SerchString } from "../components/SerchString/SerchString";
+import { SerchString } from "../../components/SerchString/SerchString";
 import { useEffect, useState } from "react";
-import { Header } from "../components/Header/Header";
+import { Header } from "../../components/Header/Header";
 import { useRef } from "react";
+import styles from "./HomePage.module.scss";
 
 export const HomePage = () => {
   const [inHeader, setInHeader] = useState(false);
@@ -38,7 +39,6 @@ export const HomePage = () => {
   return (
     <div>
       <Header inHeader={inHeader} ref={headerRef} />
-
       <SerchString ref={searchRef} />
     </div>
   );

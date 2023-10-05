@@ -2,7 +2,7 @@ import style from "./App.module.scss";
 import { Modal } from "../Modal/Modal";
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { HomePage } from "../../pages/HomePage";
+import { HomePage } from "../../pages/HomePage/HomePage";
 import { LoginPage } from "../../pages/LoginPage";
 import { ForgotPage } from "../../pages/ForgotPage";
 import { ShopSelectionPage } from "../../pages/ShopSelectionPage";
@@ -11,7 +11,6 @@ import { ProfilePage } from "../../pages/ProfilePage";
 import { StatisticsPage } from "../../pages/StatisticsPage";
 import { useDispatch, useSelector } from "react-redux";
 import { FilterProductCategories } from "../FilterProductCategories/FilterProductCategories";
-
 
 export const App = () => {
   // const dispatch = useDispatch();
