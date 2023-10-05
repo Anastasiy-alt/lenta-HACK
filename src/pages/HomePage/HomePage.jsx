@@ -9,6 +9,7 @@ import { FilterProductCategories } from "../../components/FilterProductCategorie
 import { Modal } from "../../components/Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { modalOpen } from "../../redux/slices/modalSlice";
+import { getCategories } from "../../redux/slices/categoriesSlice";
 
 export const HomePage = () => {
   const [inHeader, setInHeader] = useState(false);
@@ -19,6 +20,8 @@ export const HomePage = () => {
   const searchRef = useRef(null);
 
   useEffect(() => {
+    dispatch(getCategories());
+
     const header = headerRef.current;
     const search = searchRef.current;
 

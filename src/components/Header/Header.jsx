@@ -5,7 +5,6 @@ import { SerchString } from "../SerchString/SerchString";
 
 export const Header = forwardRef((props, ref) => {
   const { inHeader } = props;
-  console.log(inHeader);
   return (
     <>
       <div className={styles.header} ref={ref}>
