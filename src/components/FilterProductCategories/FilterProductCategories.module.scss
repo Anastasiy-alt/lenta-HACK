@@ -2,62 +2,63 @@
 @import "../../styles/common/variables";
 
 .categories {
-    width: 1166px;
-    height: 648px;
-    border-radius: 12px;
-    background-color: $auth-btn-text-color;
-    padding: 48px;
-    display: none;
+  width: 1166px;
+  height: 648px;
+  border-radius: 12px;
+  background-color: $auth-btn-text-color;
+  padding: 48px;
+  display: none;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.12);
 }
 
 .categories_open {
-    display: block;
+  display: block;
 }
 
 .categories__header {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    margin-bottom: 68px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 68px;
 }
 
 .categories__title {
-    @include font-parametr(700, 40px, 100%, $accent-text-color);
-    color: #000;
+  @include font-parametr(700, 40px, 100%, $accent-text-color);
+  color: #000;
 }
 
 .categories__reset {
-    @include font-parametr(400, 20px, 100%, $accent-text-color);
-    color: #FC0000;
-    margin-bottom: 5px;
-    margin-left: 33px;
-    margin-right: 369px;
+  @include font-parametr(400, 20px, 100%, $accent-text-color);
+  color: #fc0000;
+  margin-bottom: 5px;
+  margin-left: 33px;
+  margin-right: 369px;
 }
 
 //при необходимости добавить статус наведения
 .categories__close {
-    background-image: url(../../image/cross.svg);
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-    background-repeat: no-repeat;
-    background-size: contain;
-    align-self: flex-start;
+  background-image: url(../../image/cross.svg);
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  align-self: flex-start;
 }
 
 .categories__listBlock {
-    display: flex;
-    flex-direction: row;
-    column-gap: 120px
+  display: flex;
+  flex-direction: row;
+  column-gap: 120px;
 }
 
 .categories__button {
-    height: 60px;
-    padding: 0px 35px 0px 36px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px;
-    background: #878787;
-    @include font-parametr(400, 20px, 128.523%, $auth-btn-text-color);
-    margin-top: 135px;
+  height: 60px;
+  padding: 0px 35px 0px 36px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  background: #878787;
+  @include font-parametr(400, 20px, 128.523%, $auth-btn-text-color);
+  margin-top: 135px;
 }
