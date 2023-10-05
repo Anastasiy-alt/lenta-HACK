@@ -1,111 +1,76 @@
-import React, { useState }  from "react";
+import React, { useState } from "react";
 import styles from "./FilterProductCategories.module.scss";
 import { ProductCategories } from "../ProductCategories/ProductCategories";
-
-
-const cookingLenta = [
-    'Гриль',
-    'Порционные блюда',
-    'Соусы',
-    'Гарниры',
-    'Горячие блюда',
-    'Корейские салаты',
-    'Соленья',
-    'Порционные салаты',
-    'Мучные продукты, десерты',
-    'Салаты и закуски'
-]
-
-const bakery = [
-    "Пончики, кексы, шоколад",
-    "Пироги",
-    "Мелкоштучные изделия",
-    "Национальные изделия"
-]
-
-const bread = [
-    "Багеты и булочки",
-    "Ржаной, ржано-пшеничный, пшеничный",
-    "Бездрожжевой хлеб",
-    "Хлеб с добавками",
-    "Национальные хлеба"
-]
-
-const drinks = [
-    "Холодные напитки"
-]
-
-const fastFood = [
-    "Сэндвичи, бутерброды, роллы в лаваше",
-    "Фритюр"
-]
+import { useDispatch, useSelector } from "react-redux";
+import { modalOpen } from "../../redux/slices/modalSlice.js";
+import { nanoid } from "nanoid";
 
 export const FilterProductCategories = () => {
-    //для тест кнопки закрытия
-    const [open, setOpen] = useState(true)
-    const closePopup = () => {
-        setOpen(!open)
-    }
+  const { isOpen } = useSelector((store) => store.modal);
+  const { categories, uniqueGroup, group } = useSelector(
+    (store) => store.categories
+  );
+  const dispatch = useDispatch();
+  //для тест кнопки закрытия
+  const closePopup = () => {
+    dispatch(modalOpen());
+  };
+  console.log(uniqueGroup);
+  console.log(categories);
+  console.log(group);
+  const [resetAll, setResetAll] = useState(false);
 
-    const [resetAll, setResetAll] = useState(false);
+  const resetAllCategories = () => {
+    setResetAll(!resetAll);
+  };
 
-    const resetAllCategories = () => {
-      setResetAll(!resetAll);
-    };
+  return (
+    <section
+      className={`${styles.categories} ${isOpen && styles.categories_open}`}
+    >
+      <div className={styles.categories__header}>
+        <h1 className={styles.categories__title}>Выбери разделы СП</h1>
 
-    return (
-        <section className={`${styles.categories} ${open && styles.categories_open}`}>
-            <header className={styles.categories__header}>
-                <h1 className={styles.categories__title}>Выбери разделы СП</h1>
-                <button className={styles.categories__reset} onClick={resetAllCategories}>Сбросить выбор</button>
-                <button className={styles.categories__close} onClick={closePopup}></button>
-            </header>
+        <button
+          className={styles.categories__close}
+          onClick={closePopup}
+        ></button>
+      </div>
 
-            <article className={styles.categories__listBlock}>
-                <div>
-                    <ProductCategories
-                        categoryTitle='Кулинария "Лента"'
-                        categoryTitleEnglish='CookingLenta'
-                        categoryItems={cookingLenta}
-                        resetAll={resetAll}
-                        setResetAll={setResetAll} />
-                </div>
-
-                <div>
-
-                    <ProductCategories
-                        categoryTitle='Выпечка'
-                        categoryTitleEnglish='Bakery'
-                        categoryItems={bakery}
-                        resetAll={resetAll}
-                        setResetAll={setResetAll} />
-                    <ProductCategories
-                        categoryTitle='Хлеб'
-                        categoryTitleEnglish='Bread'
-                        categoryItems={bread}
-                        resetAll={resetAll}
-                        setResetAll={setResetAll} />
-                </div>
-
-                <div>
-                    <ProductCategories
-                        categoryTitle='Напитки'
-                        categoryTitleEnglish='Drinks'
-                        categoryItems={drinks}
-                        resetAll={resetAll}
-                        setResetAll={setResetAll} />
-
-                    <ProductCategories
-                        categoryTitle='Продукция быстрого питания'
-                        categoryTitleEnglish='FastFood'
-                        categoryItems={fastFood}
-                        resetAll={resetAll}
-                        setResetAll={setResetAll} />
-                    <button className={styles.categories__button}>Показать результат</button>
-                </div>
-
-            </article>
-
-        </section>
-    );
+      <article className={styles.categories__listBlock}>
+        {Object.entries(group).map(([group, categories]) => (
+          <div className={styles.categories__item} key={nanoid(6)}>
+            <ProductCategories
+              categoryTitle={group}
+              categoryTitleEnglish="CookingLenta"
+              categoryItems={categories}
+              resetAll={resetAll}
+              setResetAll={setResetAll}
+            />
+          </div>
+        ))}
+        {/* <div className={styles.categories__item}>
+          <ProductCategories
+            key={nanoid(6)}
+            categoryTitle={"Продукция быстрого питания «Лента»"}
+            categoryTitleEnglish="CookingLenta"
+            categoryItems={["dqwdqdq", "dqwdqdq", "dqwdqdq", "dqwdqdq"]}
+            resetAll={resetAll}
+            setResetAll={setResetAll}
+          />
+        </div> */}
+        <div className={styles.btn_container}>
+          <button
+            className={styles.categories__reset}
+            onClick={resetAllCategories}
+          >
+            Сбросить выбор
+          </button>
+          <button className={styles.categories__button}>
+            Показать результат
+          </button>
+        </div>
+      </article>
+    </section>
+  );
 };

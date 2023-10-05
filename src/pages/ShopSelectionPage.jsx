@@ -7,7 +7,7 @@ export const ShopSelectionPage = () => {
   const { isOpen } = useSelector((store) => store.modal);
 
   return (
-    <Modal active={isOpen}>
+    <Modal active={!isOpen}>
       <ShopSelect />
     </Modal>
   );

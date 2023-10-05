@@ -1,0 +1,33 @@
+@import "../../styles/common/mixins";
+@import "../../styles/common/color";
+@import "../../styles/common/typography";
+
+.container {
+  @include display(flex, column);
+  margin: 128px 0 0 458px;
+}
+
+.main_title {
+  @extend %main_title;
+  color: $accent_2;
+}
+
+.category_container {
+  @include display(flex, row);
+  margin: 32px 0;
+}
+
+.category_btn {
+  @include button(50px, 295px);
+  margin-left: 16px;
+}
+
+.filter_block {
+  margin-bottom: 56px;
+}
+
+.selected_store {
+  position: absolute;
+  top: 128px;
+  left: 70px;
+}

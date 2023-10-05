@@ -79,7 +79,7 @@ export const ProductCategories = ({
           <span className={styles.categories__itemCheck}></span>
         </label>
       </p>
-      <ul className={`styles.categories__list ${categoryTitleEnglish}`}>
+      <ul className={styles.categories__list}>
         {categoryItems.map((option, index) => (
           <li
             key={`${index}${categoryTitleEnglish}`}

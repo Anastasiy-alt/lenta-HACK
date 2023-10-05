@@ -3,11 +3,11 @@
 @import "../../styles/common/typography";
 
 .container {
-  margin: 50px;
+  display: inline-block;
 }
 
 .selectedStoreCard {
-  max-width: 336px;
+  width: 336px;
   min-height: 420px;
   max-height: 600px;
   @include display(flex, column);

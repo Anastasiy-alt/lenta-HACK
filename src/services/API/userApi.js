@@ -1,15 +1,6 @@
+import { request } from "../checkResponse";
+
 export const url = "http://94.131.100.195/api/v1/auth/";
-
-const checkResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Ошибка ${res.status}`);
-};
-
-export const request = (url, options) => {
-  return fetch(url, options).then(checkResponse);
-};
 
 export const loginUserApi = (form) => {
   return request(`${url}token/login/`, {
