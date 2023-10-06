@@ -6,7 +6,6 @@ import { getCookie } from "../../utils/coockie";
 import { useState } from "react";
 
 export const ProfilePage = () => {
-  const { email, password } = useSelector((store) => store.user.form);
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleShowPassword = (event) => {
