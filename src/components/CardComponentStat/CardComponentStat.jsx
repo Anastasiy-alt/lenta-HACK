@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import styles from "./CardComponent.module.scss";
+import styles from "./CardComponentStat.module.scss";
 
 const wape = 13;
 const max = 16;
 const min = 10;
 // const title = "Крылышки куриные гриль по-мексикански, весовые, Россия";
 
-export const CardComponent = ({ title }) => {
+export const CardComponentStat = ({ title }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState("12 мес");
   const dropdownValues = {
