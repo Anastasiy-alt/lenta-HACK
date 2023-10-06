@@ -1,21 +1,18 @@
-import { SerchString } from "../../components/SerchString/SerchString";
-import { useEffect, useState } from "react";
 import { Header } from "../../components/Header/Header";
-import { useRef } from "react";
-import styles from "./HomePage.module.scss";
-import { FilterBlock } from "../../components/FiltersBolock/FiltersBlock";
-import { SelectedStoreCard } from "../../components/SelectedStoreCard/SelectedStoreCard";
-import { FilterProductCategories } from "../../components/FilterProductCategories/FilterProductCategories";
-import { Modal } from "../../components/Modal/Modal";
-import { useDispatch, useSelector } from "react-redux";
-import { modalOpen } from "../../redux/slices/modalSlice";
-import { getCategories } from "../../redux/slices/categoriesSlice";
 import { CardList } from "../../components/CardList/CardList";
+import styles from "./StatisticsPage.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useRef } from "react";
+import { SelectedStoreCard } from "../../components/SelectedStoreCard/SelectedStoreCard";
+import { FilterBlock } from "../../components/FiltersBolock/FiltersBlock";
+import { SerchString } from "../../components/SerchString/SerchString";
+import { FilterProductCategories } from "../../components/FilterProductCategories/FilterProductCategories";
 import { useHeaderIntersection } from "../../utils/headerIntersection";
+import { getCategories } from "../../redux/slices/categoriesSlice";
+import { modalOpen } from "../../redux/slices/modalSlice";
 
-export const HomePage = () => {
+export const StatisticsPage = () => {
   const dispatch = useDispatch();
-
   const isOpen = useSelector((store) => store.modal.isOpen);
   const isIntersection = useSelector((store) => store.modal.isIntersection);
 
@@ -32,7 +29,7 @@ export const HomePage = () => {
 
   return (
     <>
-      <div>
+      <div className={styles.page_container}>
         <Header inHeader={isIntersection} ref={headerRef} />
         <div className={styles.container}>
           <h1 className={styles.main_title}>Прогноз спроса по выбранным ТК</h1>
@@ -59,3 +56,6 @@ export const HomePage = () => {
     </>
   );
 };
+{
+  /* <CardList /> */
+}
