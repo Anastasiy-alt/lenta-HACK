@@ -10,7 +10,7 @@ export const logIn = createAsyncThunk(
       if (callback) {
         callback();
       }
-      dispatch(userLogin());
+      dispatch(userLogin(form));
       return response;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -59,8 +59,11 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    userLogin(state) {
+    userLogin(state, action) {
+      console.log();
       state.isAuth = true;
+      setCookie("email", action.payload.email);
+      setCookie("password", action.payload.password);
     },
     userLogOut(state) {
       state.form.email = null;
