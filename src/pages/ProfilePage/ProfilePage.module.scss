@@ -1,0 +1,112 @@
+@import "../../styles/common/color";
+@import "../../styles/common/mixins";
+@import "../../styles/common/typography";
+
+.profile_container {
+  position: relative;
+}
+
+.container {
+  @include display(flex, column);
+  margin: 128px 0 0 458px;
+}
+
+.title {
+  @extend %main_title;
+  color: $accent_2;
+}
+
+.form {
+  @include display(flex, column);
+  margin: 32px 0 100px 0;
+  position: relative;
+
+  &_title {
+    @extend %second_level_heading;
+    color: $accent_2;
+    margin-bottom: 28px;
+  }
+
+  &_text {
+    @extend %large_text_medium;
+    color: $accent_2;
+    margin-bottom: 8px;
+  }
+
+  &_input {
+    @include input(396px);
+    background-image: none;
+    padding-left: 16px;
+    &:nth-of-type(1) {
+      margin-bottom: 22px;
+    }
+
+    &_showBtn {
+      background-image: url(../../image/profilePage/pass_show.svg);
+      @extend %pass_btn;
+    }
+
+    &_showBtn_hidden {
+      @extend %pass_btn;
+      background-image: url(../../image/profilePage/pass_hidden.svg);
+    }
+  }
+
+  .pass_container {
+    position: relative;
+    max-width: 396px;
+  }
+
+  %pass_btn {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 11px;
+    right: 16px;
+    width: 28px;
+    height: 28px;
+  }
+
+  &_btn {
+    @include button(50px, 160px);
+    position: absolute;
+    left: 412px;
+    top: 202px;
+  }
+}
+
+.store_container {
+  position: absolute;
+  top: 0;
+  left: 70px;
+}
+
+.history {
+  @include display(flex, column);
+  gap: 20px;
+  max-width: 410px;
+
+  &_title {
+    @extend %second_level_heading;
+    color: $accent_2;
+    margin-bottom: 8px;
+  }
+
+  &_item {
+    @include display(flex, row, space-between);
+    @extend %button_text;
+    color: $black;
+  }
+
+  &_button {
+    color: $link;
+  }
+}
+
+.exit_btn {
+  position: absolute;
+  top: 0;
+  right: 70px;
+  color: #970404;
+  @extend %button_text;
+}
