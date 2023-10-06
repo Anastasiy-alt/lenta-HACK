@@ -1,0 +1,54 @@
+@import "../../styles/common/_color.scss";
+@import "../../styles/common/mixins";
+@import "../../styles/common/typography";
+
+.cardList {
+  position: absolute;
+  top: 427px;
+  left: 458px;
+}
+
+.group {
+  @include display(flex, column);
+  margin-bottom: 100px;
+
+  &_title {
+    @extend %second_level_heading;
+    color: $accent_2;
+  }
+}
+
+.category {
+  width: 1409px;
+
+  &_title {
+    @include font-parametr(500, 24px, normal, $accent_2);
+    margin: 40px 0 32px 0;
+  }
+
+  &_card_сontainer {
+    @include display(flex, row);
+    gap: 32px;
+    flex-wrap: wrap;
+
+    //Скролл если потребуется
+
+    // overflow-y: scroll;
+    // max-height: 680px;
+
+    // &::-webkit-scrollbar {
+    //   width: 8px;
+    //   margin-left: 4px;
+    // }
+
+    // &::-webkit-scrollbar-track {
+    //   background: transparent;
+    // }
+
+    // &::-webkit-scrollbar-thumb {
+    //   background-color: $placeholder;
+    //   border-radius: 20px;
+    //   border: 3px solid transparent;
+    // }
+  }
+}
