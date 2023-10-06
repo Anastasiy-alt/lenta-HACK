@@ -7,7 +7,7 @@ import { LoginPage } from "../../pages/LoginPage/LoginPage";
 import { ForgotPage } from "../../pages/ForgotPage/ForgotPage";
 import { ShopSelectionPage } from "../../pages/ShopSelectionPage";
 import { FavoritesPage } from "../../pages/FavoritesPage";
-import { ProfilePage } from "../../pages/ProfilePage";
+import { ProfilePage } from "../../pages/ProfilePage/ProfilePage";
 import { StatisticsPage } from "../../pages/StatisticsPage";
 import { useDispatch, useSelector } from "react-redux";
 import { FilterProductCategories } from "../FilterProductCategories/FilterProductCategories";
