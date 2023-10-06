@@ -186,7 +186,7 @@ export const ShopSelect = () => {
           <div className={styles.selected_container}>
             <p className={styles.selected_title}>Выбранные ТК</p>
             <div className={styles.selected_item}>
-              {selectedStore.length ? (
+              {selectedStore ? (
                 <ul className={styles.selected_box}>
                   {selectedStore.map((item) => (
                     <li key={nanoid(6)}>
