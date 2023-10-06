@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ProductCategories.module.scss";
+import { saveState, loadState } from "../../utils/saveState";
 
 export const ProductCategories = ({
   categoryTitle,
-  categoryTitleEnglish,
+  id,
   categoryItems,
   resetAll,
   setResetAll,
@@ -12,7 +13,7 @@ export const ProductCategories = ({
   const [checkedItems, setCheckedItems] = useState({});
 
   const saveToLocalStorage = (newItems) => {
-    localStorage.setItem(`${categoryTitleEnglish}`, JSON.stringify(newItems));
+    saveState(newItems, categoryTitle)
   };
 
   const selectAllHandler = () => {
@@ -37,9 +38,8 @@ export const ProductCategories = ({
   };
 
   useEffect(() => {
-    const existing = JSON.parse(
-      localStorage.getItem(`${categoryTitleEnglish}`) || "{}"
-    );
+    const existing = loadState(categoryTitle)
+
     let initialItemsState = {};
 
     categoryItems.forEach(
@@ -47,7 +47,7 @@ export const ProductCategories = ({
     );
     setCheckedItems(initialItemsState);
     setSelectAll(Object.values(initialItemsState).every((val) => val));
-  }, [categoryTitleEnglish, categoryItems]);
+  }, [id, categoryItems]);
 
   useEffect(() => {
     if (resetAll) {
@@ -65,13 +65,14 @@ export const ProductCategories = ({
   }, [resetAll]);
 
   return (
+
     <>
-      <p className={styles.categories__listTitle}>
-        <label htmlFor={`SelectAll${categoryTitleEnglish}`}>
+      <p className={selectAll ? styles.categories__listTitle_type_checked : styles.categories__listTitle}>
+        <label htmlFor={`SelectAll${id}`}>
           {categoryTitle}
           <input
             type="checkbox"
-            id={`SelectAll${categoryTitleEnglish}`}
+            id={`SelectAll${id}`}
             className={styles.categories__itemCheckHidden}
             onChange={selectAllHandler}
             checked={selectAll}
@@ -82,14 +83,14 @@ export const ProductCategories = ({
       <ul className={styles.categories__list}>
         {categoryItems.map((option, index) => (
           <li
-            key={`${index}${categoryTitleEnglish}`}
-            className={styles.categories__item}
+            key={`${index}${id}`}
+            className={checkedItems[option] ? styles.categories__item_type_check : styles.categories__item}
           >
-            <label htmlFor={`${index}${categoryTitleEnglish}`}>
+            <label htmlFor={`${index}${id}`}>
               {option}
               <input
                 type="checkbox"
-                id={`${index}${categoryTitleEnglish}`}
+                id={`${index}${id}`}
                 className={styles.categories__itemCheckHidden}
                 checked={checkedItems[option] || false}
                 onChange={() => selectItemHandler(option)}

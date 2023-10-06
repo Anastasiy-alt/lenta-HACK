@@ -9,6 +9,12 @@
   margin-bottom: 24px;
 }
 
+.categories__listTitle_type_checked {
+  @extend %large_text_medium;
+  color: $accent_1;
+  margin-bottom: 24px;
+}
+
 // .categories__listTitle:nth-child(3) {
 //   margin-top: 48px;
 // }
@@ -30,7 +36,7 @@
   clip-path: inset(0 0 0 0);
 }
 
-.categories__itemCheckHidden:checked + .categories__itemCheck {
+.categories__itemCheckHidden:checked+.categories__itemCheck {
   margin-left: 4px;
   width: 24px;
   height: 12px;
@@ -38,6 +44,11 @@
   background-position: 100% 50%;
   background-repeat: no-repeat;
   display: inline-block;
+}
+
+.categories__item_type_check {
+  @extend %main_text;
+  color: $accent_1;
 }
 
 .categories__list {

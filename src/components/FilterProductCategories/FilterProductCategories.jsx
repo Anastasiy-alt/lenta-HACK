@@ -15,14 +15,13 @@ export const FilterProductCategories = () => {
   const closePopup = () => {
     dispatch(modalOpen());
   };
-  console.log(uniqueGroup);
-  console.log(categories);
-  console.log(group);
+
   const [resetAll, setResetAll] = useState(false);
 
   const resetAllCategories = () => {
     setResetAll(!resetAll);
   };
+
 
   return (
     <section
@@ -38,11 +37,11 @@ export const FilterProductCategories = () => {
       </div>
 
       <article className={styles.categories__listBlock}>
-        {Object.entries(group).map(([group, categories]) => (
+        {Object.entries(group).map(([groupTitle, categories]) => (
           <div className={styles.categories__item} key={nanoid(6)}>
             <ProductCategories
-              categoryTitle={group}
-              categoryTitleEnglish="CookingLenta"
+              categoryTitle={groupTitle}
+              id={Object.keys(group).indexOf(groupTitle)} ///
               categoryItems={categories}
               resetAll={resetAll}
               setResetAll={setResetAll}
