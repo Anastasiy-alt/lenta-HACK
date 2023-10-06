@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "nanoid";
 import { loadState } from "../../utils/saveState";
 import { setSelectedStore } from "../../redux/slices/shopSlice";
+import { useNavigate } from "react-router-dom";
 
 export const SelectedStoreCard = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(setSelectedStore(loadState("selectedStore")));
@@ -19,14 +21,21 @@ export const SelectedStoreCard = () => {
         <h2 className={styles.title}>Торговые комплексы</h2>
         <div className={styles.selected}>
           <ul className={styles.selected_list}>
-            {selectedStore.map((item) => (
-              <li className={styles.selected_item} key={nanoid(6)}>
-                {item.store}
-              </li>
-            ))}
+            {selectedStore
+              ? selectedStore.map((item) => (
+                  <li className={styles.selected_item} key={nanoid(6)}>
+                    {item.store}
+                  </li>
+                ))
+              : "Города не выбраны"}
           </ul>
         </div>
-        <button className={styles.change_button}>Изменить</button>
+        <button
+          className={styles.change_button}
+          onClick={() => navigate("shop")}
+        >
+          Изменить
+        </button>
       </div>
       <button className={styles.upload_button}>Выгрузить в Excel</button>
     </div>
