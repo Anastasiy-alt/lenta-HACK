@@ -201,7 +201,7 @@ export const ShopSelect = () => {
             </div>
             <button
               className={
-                selectedStore.length
+                selectedStore
                   ? styles.selected_btn
                   : styles.selected_btn__disable
               }

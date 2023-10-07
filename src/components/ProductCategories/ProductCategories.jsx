@@ -9,11 +9,14 @@ export const ProductCategories = ({
   resetAll,
   setResetAll,
 }) => {
+  console.log("res");
+  console.log(categoryItems);
+
   const [selectAll, setSelectAll] = useState(false);
   const [checkedItems, setCheckedItems] = useState({});
 
   const saveToLocalStorage = (newItems) => {
-    saveState(newItems, categoryTitle)
+    saveState(newItems, categoryTitle);
   };
 
   const selectAllHandler = () => {
@@ -27,7 +30,6 @@ export const ProductCategories = ({
     setCheckedItems(newItems);
     saveToLocalStorage(newItems);
   };
-
   const selectItemHandler = (name) => {
     setCheckedItems((prevItems) => {
       const newState = { ...prevItems, [name]: !prevItems[name] };
@@ -38,7 +40,7 @@ export const ProductCategories = ({
   };
 
   useEffect(() => {
-    const existing = loadState(categoryTitle)
+    const existing = loadState(categoryTitle) || {};
 
     let initialItemsState = {};
 
@@ -65,9 +67,14 @@ export const ProductCategories = ({
   }, [resetAll]);
 
   return (
-
     <>
-      <p className={selectAll ? styles.categories__listTitle_type_checked : styles.categories__listTitle}>
+      <p
+        className={
+          selectAll
+            ? styles.categories__listTitle_type_checked
+            : styles.categories__listTitle
+        }
+      >
         <label htmlFor={`SelectAll${id}`}>
           {categoryTitle}
           <input
@@ -84,7 +91,11 @@ export const ProductCategories = ({
         {categoryItems.map((option, index) => (
           <li
             key={`${index}${id}`}
-            className={checkedItems[option] ? styles.categories__item_type_check : styles.categories__item}
+            className={
+              checkedItems[option]
+                ? styles.categories__item_type_check
+                : styles.categories__item
+            }
           >
             <label htmlFor={`${index}${id}`}>
               {option}

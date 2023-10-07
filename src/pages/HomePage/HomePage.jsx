@@ -11,20 +11,44 @@ import { useDispatch, useSelector } from "react-redux";
 import { modalOpen } from "../../redux/slices/modalSlice";
 import { getCategories } from "../../redux/slices/categoriesSlice";
 import { CardList } from "../../components/CardList/CardList";
-import { useHeaderIntersection } from "../../utils/headerIntersection";
 
 export const HomePage = () => {
   const dispatch = useDispatch();
 
   const isOpen = useSelector((store) => store.modal.isOpen);
-  const isIntersection = useSelector((store) => store.modal.isIntersection);
+
+  const [inHeader, setInHeader] = useState(false);
 
   const headerRef = useRef(null);
   const searchRef = useRef(null);
+
   useEffect(() => {
     dispatch(getCategories());
+
+    const header = headerRef.current;
+    const search = searchRef.current;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInHeader(false);
+        } else {
+          setInHeader(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (header && search) {
+      observer.observe(search);
+    }
+
+    return () => {
+      if (header && search) {
+        observer.unobserve(search);
+      }
+    };
   }, []);
-  useHeaderIntersection({ headerRef, searchRef });
 
   const openModal = () => {
     dispatch(modalOpen());
@@ -33,7 +57,7 @@ export const HomePage = () => {
   return (
     <>
       <div>
-        <Header inHeader={isIntersection} ref={headerRef} />
+        <Header inHeader={inHeader} ref={headerRef} />
         <div className={styles.container}>
           <h1 className={styles.main_title}>Прогноз спроса по выбранным ТК</h1>
           <div className={styles.category_container}>

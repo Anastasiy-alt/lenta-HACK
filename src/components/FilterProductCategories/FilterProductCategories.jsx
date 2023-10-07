@@ -2,18 +2,16 @@ import React, { useState } from "react";
 import styles from "./FilterProductCategories.module.scss";
 import { ProductCategories } from "../ProductCategories/ProductCategories";
 import { useDispatch, useSelector } from "react-redux";
-import { modalOpen } from "../../redux/slices/modalSlice.js";
+import { modalOpen, modalClose } from "../../redux/slices/modalSlice.js";
 import { nanoid } from "nanoid";
 
 export const FilterProductCategories = () => {
   const { isOpen } = useSelector((store) => store.modal);
-  const { categories, uniqueGroup, group } = useSelector(
-    (store) => store.categories
-  );
+  const { group } = useSelector((store) => store.categories);
   const dispatch = useDispatch();
   //для тест кнопки закрытия
   const closePopup = () => {
-    dispatch(modalOpen());
+    dispatch(modalClose());
   };
 
   const [resetAll, setResetAll] = useState(false);
@@ -21,7 +19,6 @@ export const FilterProductCategories = () => {
   const resetAllCategories = () => {
     setResetAll(!resetAll);
   };
-
 
   return (
     <section
@@ -48,16 +45,6 @@ export const FilterProductCategories = () => {
             />
           </div>
         ))}
-        {/* <div className={styles.categories__item}>
-          <ProductCategories
-            key={nanoid(6)}
-            categoryTitle={"Продукция быстрого питания «Лента»"}
-            categoryTitleEnglish="CookingLenta"
-            categoryItems={["dqwdqdq", "dqwdqdq", "dqwdqdq", "dqwdqdq"]}
-            resetAll={resetAll}
-            setResetAll={setResetAll}
-          />
-        </div> */}
         <div className={styles.btn_container}>
           <button
             className={styles.categories__reset}
