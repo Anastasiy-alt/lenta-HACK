@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./cardList.module.scss";
 import { products } from "../../utils/mockData";
-import { CardComponent } from "../CardComponent/CardComponent";
+import { CardComponentStat } from "../CardComponentStat/CardComponentStat";
 
 export const CardList = () => {
   const groupedProducts = products.reduce((acc, product) => {
@@ -55,7 +55,7 @@ export const CardList = () => {
                     <ul className={styles.category_card_сontainer}>
                       {category.products.map((product, k) => (
                         <li key={k}>
-                          <CardComponent title={product.sku} />
+                          <CardComponentStat title={product.sku} />
                         </li>
                       ))}
                     </ul>
