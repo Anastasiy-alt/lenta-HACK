@@ -9,9 +9,6 @@ export const ProductCategories = ({
   resetAll,
   setResetAll,
 }) => {
-  console.log("res");
-  console.log(categoryItems);
-
   const [selectAll, setSelectAll] = useState(false);
   const [checkedItems, setCheckedItems] = useState({});
 

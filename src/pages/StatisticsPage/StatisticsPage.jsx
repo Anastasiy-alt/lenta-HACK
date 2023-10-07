@@ -9,6 +9,7 @@ import { SerchString } from "../../components/SerchString/SerchString";
 import { FilterProductCategories } from "../../components/FilterProductCategories/FilterProductCategories";
 import { getCategories } from "../../redux/slices/categoriesSlice";
 import { modalOpen } from "../../redux/slices/modalSlice";
+import { Modal } from "../../components/Modal/Modal";
 
 export const StatisticsPage = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,6 @@ export const StatisticsPage = () => {
       }
     };
   }, []);
-  useHeaderIntersection({ headerRef, searchRef });
 
   const openModal = () => {
     dispatch(modalOpen());
