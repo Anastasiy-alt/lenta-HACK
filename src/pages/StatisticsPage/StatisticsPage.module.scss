@@ -13,10 +13,6 @@
   background-color: rgba(0, 0, 0, 0.36);
 }
 
-.page__scroll {
-  overflow-y: hidden
-}
-
 .container {
   @include display(flex, column);
   margin: 128px 0 0 458px;
@@ -48,7 +44,7 @@
 }
 
 .page__FAQhover {
-    display: none;
+  display: none;
   padding: 12px;
   justify-content: center;
   align-items: center;

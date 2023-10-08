@@ -55,21 +55,22 @@
 
 .faq__list {
     overflow-y: scroll;
+
     &::-webkit-scrollbar {
         width: 8px;
         height: 60px;
         margin-left: 8px;
-      }
-  
-      &::-webkit-scrollbar-track {
+    }
+
+    &::-webkit-scrollbar-track {
         background: transparent;
-      }
-  
-      &::-webkit-scrollbar-thumb {
+    }
+
+    &::-webkit-scrollbar-thumb {
         background-color: $auth-input-placeholder;
         border-radius: 13px;
 
-      }
+    }
 }
 
 .faq__item {
@@ -85,7 +86,7 @@
     @include font-parametr(400, 18px, 125%, $auth-default-text-color);
     margin-top: 16px;
     margin-left: 16px;
-    list-style: disc ;
+    list-style: disc;
 }
 
 .faq__itemTitle {

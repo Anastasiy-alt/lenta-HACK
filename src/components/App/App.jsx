@@ -20,8 +20,7 @@ export const App = () => {
   return (
     <>
       <Routes>
-        {/* <Route path="/" element={<HomePage />} /> */}
-        <Route path="/" element={<FAQ />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="forgot" element={<ForgotPage />} />
         <Route path="shop" element={<ShopSelectionPage />} />

@@ -17,49 +17,48 @@ export const StatisticsPage = () => {
   const [isOpenFAQ, setIsOpenFAQ] = useState(false)
   const toggleOpenFAQ = () => {
     setIsOpenFAQ(!isOpenFAQ);
-};
-
+  };
 
 
   const [inHeader, setInHeader] = useState(false);
 
   const headerRef = useRef(null);
   const searchRef = useRef(null);
-  // useEffect(() => {
-  //   dispatch(getCategories());
+  useEffect(() => {
+    dispatch(getCategories());
 
-  //   const header = headerRef.current;
-  //   const search = searchRef.current;
+    const header = headerRef.current;
+    const search = searchRef.current;
 
-  //   const observer = new IntersectionObserver(
-  //     ([entry]) => {
-  //       if (entry.isIntersecting) {
-  //         setInHeader(false);
-  //       } else {
-  //         setInHeader(true);
-  //       }
-  //     },
-  //     { threshold: 0.5 }
-  //   );
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInHeader(false);
+        } else {
+          setInHeader(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
 
-  //   if (header && search) {
-  //     observer.observe(search);
-  //   }
+    if (header && search) {
+      observer.observe(search);
+    }
 
-  //   return () => {
-  //     if (header && search) {
-  //       observer.unobserve(search);
-  //     }
-  //   };
-  // }, []);
-  // useHeaderIntersection({ headerRef, searchRef });
+    return () => {
+      if (header && search) {
+        observer.unobserve(search);
+      }
+    };
+  }, []);
+  useHeaderIntersection({ headerRef, searchRef });
 
   const openModal = () => {
     dispatch(modalOpen());
   };
 
   return (
-    <div>
+    <>
       <div className={styles.page_container}>
         <Header inHeader={inHeader} ref={headerRef} />
         <div className={styles.container}>
@@ -75,16 +74,16 @@ export const StatisticsPage = () => {
         <div className={styles.selected_store}>
           <SelectedStoreCard></SelectedStoreCard>
         </div>
-        <CardList className={`${isOpenFAQ && `${styles.page__scroll}`}`} />
+        <CardList />
         <div className={styles.page__FAQblock}>
           <div className={styles.page__FAQhover}>Техническая поддержка</div>
           <button className={styles.page__FAQbutton} onClick={toggleOpenFAQ}></button>
         </div>
       </div>
-      <div className={`${isOpenFAQ && `${styles.page__back}`}`}></div>
+      <div className={`${isOpenFAQ && `${styles.page__back}`}`} onClick={toggleOpenFAQ}></div>
       {isOpenFAQ && (
         <FAQ
-        close={toggleOpenFAQ} />
+          close={toggleOpenFAQ} />
       )
 
       }
@@ -96,7 +95,7 @@ export const StatisticsPage = () => {
         ""
       )}
 
-    </div>
+    </>
   );
 };
 {

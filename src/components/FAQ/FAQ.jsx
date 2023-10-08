@@ -5,7 +5,7 @@ import chevron from "../../image/FAQchevron-down.svg"
 import UserSlice from "../../redux/slices/userSlice";
 
 
-export const FAQ = ({close}) => {
+export const FAQ = ({ close }) => {
 
     const [isOpen1, setIsOpen1] = useState(false)
     const [isOpen2, setIsOpen2] = useState(false)
