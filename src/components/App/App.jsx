@@ -11,6 +11,7 @@ import { ProfilePage } from "../../pages/ProfilePage/ProfilePage";
 import { StatisticsPage } from "../../pages/StatisticsPage/StatisticsPage";
 import { useDispatch, useSelector } from "react-redux";
 import { FilterProductCategories } from "../FilterProductCategories/FilterProductCategories";
+import { FAQ } from "../FAQ/FAQ";
 
 export const App = () => {
   // const dispatch = useDispatch();
@@ -19,7 +20,8 @@ export const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/" element={<HomePage />} /> */}
+        <Route path="/" element={<FAQ />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="forgot" element={<ForgotPage />} />
         <Route path="shop" element={<ShopSelectionPage />} />
