@@ -1,0 +1,61 @@
+@import "../../styles/common/mixins";
+@import "../../styles/common/variables";
+
+.notfound {
+    position: relative;
+}
+
+.notfound__logo {
+    position: relative;
+    margin-top: 60px;
+    margin-left: 60px;
+    width: 320px;
+    height: 127px;
+    z-index: 2;
+}
+
+.notfound__circle {
+    z-index: 1;
+    border-radius: 649px;
+    background-color: $accent-button-color;
+    width: 649px;
+    height: 649px;
+    position: absolute;
+    top: -325px;
+    left: -105px;
+}
+
+.notfound__mainblock {
+    margin-top: 155px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.notfound__title {
+    @include font-parametr(700, 200px, 128%, $accent-button-color);
+}
+
+.notfound__subtitle {
+    @include font-parametr(400, 20px, 136%, $accent-button-color);
+    margin-top: -22px;
+}
+
+.notfound__text {
+    @include font-parametr(400, 20px, 136%, $forgot-pass-text-color);
+    text-align: center;
+    width: 462px;
+    margin-top: 50px;
+}
+
+.notfound__button {
+    display: flex;
+    padding: 15px 84px 14px 84px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    background-color: $accent-button-color;
+    @include font-parametr(400, 16px, normal, $auth-btn-text-color);
+    margin-top: 32px;
+}
