@@ -11,6 +11,7 @@ import { ProfilePage } from "../../pages/ProfilePage/ProfilePage";
 import { StatisticsPage } from "../../pages/StatisticsPage/StatisticsPage";
 import { useDispatch, useSelector } from "react-redux";
 import { FilterProductCategories } from "../FilterProductCategories/FilterProductCategories";
+import { FAQ } from "../FAQ/FAQ";
 import { NotFound } from "../NotFound/NotFound";
 
 export const App = () => {

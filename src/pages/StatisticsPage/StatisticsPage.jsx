@@ -9,10 +9,16 @@ import { SerchString } from "../../components/SerchString/SerchString";
 import { FilterProductCategories } from "../../components/FilterProductCategories/FilterProductCategories";
 import { getCategories } from "../../redux/slices/categoriesSlice";
 import { modalOpen } from "../../redux/slices/modalSlice";
+import { FAQ } from "../../components/FAQ/FAQ";
 
 export const StatisticsPage = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector((store) => store.modal.isOpen);
+  const [isOpenFAQ, setIsOpenFAQ] = useState(false)
+  const toggleOpenFAQ = () => {
+    setIsOpenFAQ(!isOpenFAQ);
+  };
+
 
   const [inHeader, setInHeader] = useState(false);
 
@@ -69,7 +75,18 @@ export const StatisticsPage = () => {
           <SelectedStoreCard></SelectedStoreCard>
         </div>
         <CardList />
+        <div className={styles.page__FAQblock}>
+          <div className={styles.page__FAQhover}>Техническая поддержка</div>
+          <button className={styles.page__FAQbutton} onClick={toggleOpenFAQ}></button>
+        </div>
       </div>
+      <div className={`${isOpenFAQ && `${styles.page__back}`}`} onClick={toggleOpenFAQ}></div>
+      {isOpenFAQ && (
+        <FAQ
+          close={toggleOpenFAQ} />
+      )
+
+      }
       {isOpen ? (
         <Modal active={isOpen}>
           <FilterProductCategories />
@@ -77,6 +94,7 @@ export const StatisticsPage = () => {
       ) : (
         ""
       )}
+
     </>
   );
 };
