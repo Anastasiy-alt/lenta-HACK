@@ -15,23 +15,28 @@ export const getCategories = createAsyncThunk(
 
 const initialState = {
   categories: [],
-  uniqueGroup: null,
+  uniqueGroup: [],
   group: {},
+  selectedCategories: [],
 };
 
 const categoriesSlice = createSlice({
   name: "category",
   initialState,
   reducers: {
-    setUniqGroup(state, action) {},
+    setselectedCategories(state, action) {
+      state.selectedCategories = action.payload;
+    },
   },
   extraReducers: {
     [getCategories.pending]: () => {},
     [getCategories.fulfilled]: (state, action) => {
       state.categories = action.payload;
-      state.uniqueGroup = action.payload.filter((item, index, array) => {
-        return array.findIndex((val) => val.group === item.group) === index;
-      });
+      state.uniqueGroup = action.payload
+        .map((item) => item.group)
+        .filter((item, index, array) => {
+          return array.indexOf(item) === index;
+        });
       state.group = action.payload.reduce((result, item) => {
         (result[item.group] = result[item.group] || []).push(item.category);
         return result;
@@ -43,5 +48,5 @@ const categoriesSlice = createSlice({
   },
 });
 
-export const { modalOpen } = categoriesSlice.actions;
+export const { setselectedCategories } = categoriesSlice.actions;
 export default categoriesSlice.reducer;

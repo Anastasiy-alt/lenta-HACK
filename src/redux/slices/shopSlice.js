@@ -37,7 +37,7 @@ export const shopSlice = createSlice({
   extraReducers: {
     [getCity.pending]: () => {},
     [getCity.fulfilled]: (state, action) => {
-      state.cityArr = action.payload.data;
+      state.cityArr = action.payload;
       state.status = true;
       // state.currentCity = action.payload.data[0].city;
     },

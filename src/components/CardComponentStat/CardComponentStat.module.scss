@@ -2,162 +2,161 @@
 @import "../../styles/common/variables";
 
 .card {
-    width: 324px;
-    height: 324px;
-    border-radius: 12px;
-    border: 1px solid $card-border;
-    background: $card-background;
-    padding: 20px;
+  width: 324px;
+  height: 324px;
+  border-radius: 12px;
+  border: 1px solid $card-border;
+  background: $card-background;
+  padding: 20px;
+  cursor: pointer;
 }
 
 .card__header {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .card__save {
-    width: 24px;
-    height: 40px;
-    margin-left: 16px;
-    margin-top: -20px;
-    background-image: url(../../image/save.svg);
+  width: 24px;
+  height: 40px;
+  margin-left: 16px;
+  margin-top: -20px;
+  background-image: url(../../image/save.svg);
 }
 
 .card__saveSelect {
-    background-image: url(../../image/save_hover.svg);
+  background-image: url(../../image/save_hover.svg);
 }
 
 .card__title {
-    margin-bottom: 11px;
-    overflow: hidden;
-    @include font-parametr(700, 18px, normal, $forgot-pass-text-color);
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    width: 244px;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+  margin-bottom: 11px;
+  overflow: hidden;
+  @include font-parametr(700, 18px, normal, $forgot-pass-text-color);
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  width: 244px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .card__subtitle {
-    @include font-parametr(700, 12px, normal, $auth-default-text-color);
-    text-transform: uppercase;
-
+  @include font-parametr(700, 12px, normal, $auth-default-text-color);
+  text-transform: uppercase;
 }
 
 .dropdown {
-    height: 24px;
-    width: 59px;
-    display: inline-flex;
-    padding: 8px 6px;
-    justify-content: center;
-    align-items: center;
-    gap: 2px;
-    border-radius: 25px;
-    background: $accent-button-color;
-    cursor: pointer;
-    position: relative;
+  height: 24px;
+  width: 59px;
+  display: inline-flex;
+  padding: 8px 6px;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  border-radius: 25px;
+  background: $accent-button-color;
+  cursor: pointer;
+  position: relative;
 }
 
 .dropdown__selected {
-    text-align: center;
-    @include font-parametr(500, 12px, normal, $auth-btn-text-color);
-    cursor: default;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  text-align: center;
+  @include font-parametr(500, 12px, normal, $auth-btn-text-color);
+  cursor: default;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .dropdown:hover {
-    background: $accent-text-color;
+  background: $accent-text-color;
 }
 
 .dropdown__button {
-    background-image: url(../../image/Polygon.svg);
-    fill: $auth-btn-text-color;
-    width: 8px;
-    height: 5px;
-    background-position: 50% 50%;
-    background-size: 100%;
-    margin-left: 2px;
+  background-image: url(../../image/Polygon.svg);
+  fill: $auth-btn-text-color;
+  width: 8px;
+  height: 5px;
+  background-position: 50% 50%;
+  background-size: 100%;
+  margin-left: 2px;
 }
 
 .dropdown__list {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
 }
 
-
 .dropdown__item {
-    height: 24px;
-    width: 59px;
-    display: inline-flex;
-    padding: 8px 6px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 25px;
-    background: $auth-input-bcg-color;
-    @include font-parametr(500, 12px, normal, $accent-button-color);
-    margin-top: 4px;
+  height: 24px;
+  width: 59px;
+  display: inline-flex;
+  padding: 8px 6px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  background: $auth-input-bcg-color;
+  @include font-parametr(500, 12px, normal, $accent-button-color);
+  margin-top: 4px;
 }
 
 .dropdown__item:hover {
-    background-color: $accent-button-color;
-    color: $auth-input-bcg-color;
+  background-color: $accent-button-color;
+  color: $auth-input-bcg-color;
 }
 
 .card__wape {
-    display: flex;
-    flex-direction: row;
-    column-gap: 3px;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  column-gap: 3px;
+  align-items: center;
 }
 
 .card__maxmin {
-    display: flex;
-    flex-direction: column;
-    row-gap: 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
 }
 
 .card__maxminName {
-    @include font-parametr(700, 12px, normal, $auth-default-text-color);
-    text-transform: uppercase;
+  @include font-parametr(700, 12px, normal, $auth-default-text-color);
+  text-transform: uppercase;
 }
 
 .card__maxminRes {
-    margin-top: 4px;
-    @include font-parametr(500, 16px, normal, $auth-default-text-color);
+  margin-top: 4px;
+  @include font-parametr(500, 16px, normal, $auth-default-text-color);
 }
 
 .card__stat {
-    display: inline-block;
-    margin-bottom: 62px;
-    @include font-parametr(500, 40px, normal, $card-stat-green);
+  display: inline-block;
+  margin-bottom: 62px;
+  @include font-parametr(500, 40px, normal, $card-stat-green);
 
-    &_type_green {
-        color: $card-stat-green;
-    }
+  &_type_green {
+    color: $card-stat-green;
+  }
 
-    &_type_red {
-        color: $card-stat-red;
-    }
+  &_type_red {
+    color: $card-stat-red;
+  }
 }
 
 .card__footer {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 .card_diagram {
-    background-image: url(../../image/diagram.svg);
-    width: 40px;
-    height: 40px;
+  background-image: url(../../image/diagram.svg);
+  width: 40px;
+  height: 40px;
 }
 
 .card_diagram:hover {
-    background-image: url(../../image/diagram_hover.svg);
+  background-image: url(../../image/diagram_hover.svg);
 }

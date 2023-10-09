@@ -8,18 +8,23 @@ import { FilterBlock } from "../../components/FiltersBolock/FiltersBlock";
 import { SerchString } from "../../components/SerchString/SerchString";
 import { FilterProductCategories } from "../../components/FilterProductCategories/FilterProductCategories";
 import { getCategories } from "../../redux/slices/categoriesSlice";
+import {
+  modalOpen,
+  modalToggle,
+  modalType,
+} from "../../redux/slices/modalSlice";
+import { Modal } from "../../components/Modal/Modal";
+import { DiagramStatistic } from "../../components/DiagramStatistic/DiagramStatistic";
 import { modalOpen } from "../../redux/slices/modalSlice";
 import { FAQ } from "../../components/FAQ/FAQ";
 
 export const StatisticsPage = () => {
-  const dispatch = useDispatch();
-  const isOpen = useSelector((store) => store.modal.isOpen);
   const [isOpenFAQ, setIsOpenFAQ] = useState(false)
   const toggleOpenFAQ = () => {
     setIsOpenFAQ(!isOpenFAQ);
   };
-
-
+  const dispatch = useDispatch();
+  const { isOpen, type } = useSelector((store) => store.modal);
   const [inHeader, setInHeader] = useState(false);
 
   const headerRef = useRef(null);
@@ -51,10 +56,10 @@ export const StatisticsPage = () => {
       }
     };
   }, []);
-  useHeaderIntersection({ headerRef, searchRef });
 
   const openModal = () => {
     dispatch(modalOpen());
+    dispatch(modalType("category"));
   };
 
   return (
@@ -80,6 +85,16 @@ export const StatisticsPage = () => {
           <button className={styles.page__FAQbutton} onClick={toggleOpenFAQ}></button>
         </div>
       </div>
+      {isOpen &&
+        (type === "category" ? (
+          <Modal active={isOpen} setActive={() => dispatch(modalToggle())}>
+            <FilterProductCategories />
+          </Modal>
+        ) : type === "diagram" ? (
+          <Modal active={isOpen} setActive={() => dispatch(modalToggle())}>
+            <DiagramStatistic />
+          </Modal>
+        ) : null)}
       <div className={`${isOpenFAQ && `${styles.page__back}`}`} onClick={toggleOpenFAQ}></div>
       {isOpenFAQ && (
         <FAQ
@@ -87,17 +102,6 @@ export const StatisticsPage = () => {
       )
 
       }
-      {isOpen ? (
-        <Modal active={isOpen}>
-          <FilterProductCategories />
-        </Modal>
-      ) : (
-        ""
-      )}
-
     </>
   );
 };
-{
-  /* <CardList /> */
-}
