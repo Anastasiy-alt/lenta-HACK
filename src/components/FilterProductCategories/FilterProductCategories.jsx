@@ -3,12 +3,16 @@ import styles from "./FilterProductCategories.module.scss";
 import { ProductCategories } from "../ProductCategories/ProductCategories";
 import { useDispatch, useSelector } from "react-redux";
 import { modalOpen, modalClose } from "../../redux/slices/modalSlice.js";
+import { setselectedCategories } from "../../redux/slices/categoriesSlice";
 import { nanoid } from "nanoid";
 
 export const FilterProductCategories = () => {
   const { isOpen } = useSelector((store) => store.modal);
-  const { group } = useSelector((store) => store.categories);
+  const { group, uniqueGroup, selectedCategories } = useSelector(
+    (store) => store.categories
+  );
   const dispatch = useDispatch();
+
   //для тест кнопки закрытия
   const closePopup = () => {
     dispatch(modalClose());
@@ -18,6 +22,32 @@ export const FilterProductCategories = () => {
 
   const resetAllCategories = () => {
     setResetAll(!resetAll);
+  };
+
+  //список выбранных категорий
+  const takeData = () => {
+    let dataObject = {};
+    let newArray = [];
+
+    for (let i = 0; i < sessionStorage.length; i++) {
+      let key = sessionStorage.key(i);
+      let value = sessionStorage.getItem(key);
+      if (value !== undefined) {
+        dataObject[key] = JSON.parse(value);
+      }
+    }
+
+    uniqueGroup.forEach((key) => {
+      if (key in dataObject) {
+        for (let subKey in dataObject[key]) {
+          if (dataObject[key][subKey] === true) {
+            newArray.push(subKey);
+          }
+        }
+      }
+    });
+    dispatch(setselectedCategories(newArray));
+    dispatch(modalClose());
   };
 
   return (
@@ -52,8 +82,11 @@ export const FilterProductCategories = () => {
           >
             Сбросить выбор
           </button>
-          <button className={styles.categories__button}>
-            Показать результат
+          <button
+            className={styles.categories__button}
+            onClick={() => takeData()}
+          >
+            Выбрать
           </button>
         </div>
       </article>
