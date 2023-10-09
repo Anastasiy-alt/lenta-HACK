@@ -15,11 +15,16 @@ import {
 } from "../../redux/slices/modalSlice";
 import { Modal } from "../../components/Modal/Modal";
 import { DiagramStatistic } from "../../components/DiagramStatistic/DiagramStatistic";
+import { modalOpen } from "../../redux/slices/modalSlice";
+import { FAQ } from "../../components/FAQ/FAQ";
 
 export const StatisticsPage = () => {
+  const [isOpenFAQ, setIsOpenFAQ] = useState(false)
+  const toggleOpenFAQ = () => {
+    setIsOpenFAQ(!isOpenFAQ);
+  };
   const dispatch = useDispatch();
   const { isOpen, type } = useSelector((store) => store.modal);
-
   const [inHeader, setInHeader] = useState(false);
 
   const headerRef = useRef(null);
@@ -75,6 +80,10 @@ export const StatisticsPage = () => {
           <SelectedStoreCard></SelectedStoreCard>
         </div>
         <CardList />
+        <div className={styles.page__FAQblock}>
+          <div className={styles.page__FAQhover}>Техническая поддержка</div>
+          <button className={styles.page__FAQbutton} onClick={toggleOpenFAQ}></button>
+        </div>
       </div>
       {isOpen &&
         (type === "category" ? (
@@ -86,6 +95,13 @@ export const StatisticsPage = () => {
             <DiagramStatistic />
           </Modal>
         ) : null)}
+      <div className={`${isOpenFAQ && `${styles.page__back}`}`} onClick={toggleOpenFAQ}></div>
+      {isOpenFAQ && (
+        <FAQ
+          close={toggleOpenFAQ} />
+      )
+
+      }
     </>
   );
 };
