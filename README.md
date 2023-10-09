@@ -4,7 +4,8 @@
 
 ## Сведения о команде
 
--**Anastasiy Volokitina** - Frontend разработчик - [GitHub](https://github.com/Anastasiy-alt) -**kanat uulu Dastan** - Frontend разработчик - [GitHub](https://github.com/Grimlerih)
+-**Anastasiy Volokitina** - Frontend разработчик - [GitHub](https://github.com/Anastasiy-alt) 
+-**kanat uulu Dastan** - Frontend разработчик - [GitHub](https://github.com/Grimlerih)
 
 ## Инструкция по сборке и запуску
 
