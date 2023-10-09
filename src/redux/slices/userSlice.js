@@ -1,16 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { loginUserApi, logoutUserApi } from "../../services/API/userApi";
+import { setCookie, parseCookie } from "../../utils/coockie";
 
 export const logIn = createAsyncThunk(
   "user/logIn",
-  async function (form, { rejectWithValue, dispatch }) {
+  async function ({ form, callback }, { rejectWithValue, dispatch }) {
     try {
       const response = await loginUserApi(form);
-
-      if (!response.ok) {
-        throw new Error("Error");
+      if (callback) {
+        callback();
       }
-      dispatch(userLogin());
+      dispatch(userLogin(form));
+      return response;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -22,10 +23,6 @@ export const logOut = createAsyncThunk(
   async function (refreshToken, { rejectWithValue, dispatch }) {
     try {
       const response = await logoutUserApi(refreshToken);
-
-      if (!response.ok) {
-        throw new Error("Error");
-      }
       dispatch(userLogOut(refreshToken));
     } catch (error) {
       return rejectWithValue(error.message);
@@ -38,29 +35,25 @@ const setError = (state, action) => {
   state.error = action.payload;
 };
 
-const setFulfilled = (state, action) => {
-  state.status = "resolved";
-  if (typeof action.meta.arg === "function") {
-    action.meta.arg();
-  }
-};
-
 const initialState = {
   form: {
-    email: null,
-    password: null,
+    email: "",
+    password: "",
   },
   isAuth: false,
-  error: null,
-  status: null,
+  error: false,
+  loader: false,
+  isRemember: false,
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    userLogin(state) {
+    userLogin(state, action) {
       state.isAuth = true;
+      setCookie("email", action.payload.email);
+      setCookie("password", action.payload.password);
     },
     userLogOut(state) {
       state.form.email = null;
@@ -68,24 +61,41 @@ const userSlice = createSlice({
       state.isAuth = false;
     },
     setUserFormValue(state, action) {
-      return {
-        ...state,
-        form: { ...state.form, [action.payload.name]: action.payload.value },
-      };
+      state.form[action.payload.name] = action.payload.value;
+    },
+    setUserError(state) {
+      state.error = true;
+    },
+    setRememberMe(state, action) {
+      state.isRemember = action.payload;
     },
   },
   extraReducers: {
     [logIn.pending]: (state) => {
-      state.status = "loading...";
+      state.loader = true;
       state.error = null;
     },
-    [logIn.fulfilled]: setFulfilled,
-    [logOut.fulfilled]: setFulfilled,
+    [logIn.fulfilled]: (state, action) => {
+      if (state.isRemember) {
+        setCookie("auth_token", action.payload.auth_token, 7);
+      }
+      state.loader = false;
+    },
+    // [logOut.fulfilled]: setFulfilled,
 
-    [logIn.rejected]: setError,
+    [logIn.rejected]: (state, action) => {
+      state.loader = false;
+      state.error = action.payload;
+    },
     [logOut.rejected]: setError,
   },
 });
 
-export const { userLogin, userLogOut, setUserFormValue } = userSlice.actions;
+export const {
+  userLogin,
+  userLogOut,
+  setUserFormValue,
+  setUserError,
+  setRememberMe,
+} = userSlice.actions;
 export default userSlice.reducer;

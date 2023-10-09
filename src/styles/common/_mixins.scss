@@ -1,0 +1,55 @@
+@import "./color";
+
+@mixin font-parametr($weight, $size, $height, $color) {
+  font: {
+    size: $size;
+    weight: $weight;
+  }
+  line-height: $height;
+  color: $color;
+}
+
+//настройка dispaly параметров
+@mixin display($display: block, $flexDir: row, $justCont: flex-start) {
+  display: $display;
+  flex-direction: $flexDir;
+  justify-content: $justCont;
+}
+
+//компонент input
+@mixin input($width: 410px) {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background-color: $inputBg;
+  min-height: 50px;
+  width: $width;
+  padding-left: 46px;
+  background-image: url("../../image/shopSelect/search.svg");
+  background-repeat: no-repeat;
+  background-position: left 16px bottom 14px;
+  transition: border 0.4s ease;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid $inputHover;
+  }
+
+  &:focus {
+    border: 1px solid $accent_1;
+  }
+}
+
+//готовый компонент button
+@mixin button($height: 40px, $width: null) {
+  width: $width;
+  height: $height;
+  border-radius: 12px;
+  background: $accent_1;
+  transition: all 0.3s ease;
+  color: $bgFill;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $accent_2;
+  }
+}

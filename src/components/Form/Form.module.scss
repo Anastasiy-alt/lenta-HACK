@@ -1,2 +1,67 @@
+@import "../../styles/common/mixins";
+@import "../../styles/common/variables";
+
 .form {
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  @include font-parametr(400, 16px, normal, $link-color);
+  margin-left: 98px;
+  justify-self: flex-end;
+}
+
+.input {
+  height: 50px;
+  background-color: $auth-input-bcg-color;
+  padding-left: 16px;
+  border-radius: 12px;
+}
+
+.input::placeholder {
+  @include font-parametr(400, 18px, normal, $auth-input-placeholder);
+}
+
+.input:first-of-type {
+  margin-bottom: 20px;
+}
+
+.button {
+  @include button(56px);
+  @include font-parametr(400, 18px, normal, #ffffff);
+}
+
+.text {
+  @include font-parametr(500, 20px, normal, $accent-text-color);
+  margin-bottom: 8px;
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+}
+
+.label {
+  margin-left: 12px;
+  @include font-parametr(400, 16px, normal, $auth-default-text-color);
+}
+
+.error_text {
+  @include font-parametr(400, 16px, 137%, $auth-error-color);
+  text-align: center;
+  margin: 52px 0 20px 0;
+}
+
+.error_text_hidden {
+  visibility: hidden;
+  @extend .error_text;
+}
+
+.checkbox_container {
+  display: flex;
+  margin: 20px 0 0 0;
+  align-items: center;
+  position: relative;
 }

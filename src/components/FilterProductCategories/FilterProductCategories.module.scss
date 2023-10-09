@@ -1,0 +1,86 @@
+@import "../../styles/common/mixins";
+@import "../../styles/common/variables";
+@import "../../styles/common/typography";
+@import "../../styles/common/color";
+
+.categories {
+  width: 1144px;
+  height: 820px;
+  border-radius: 12px;
+  background-color: $auth-btn-text-color;
+  padding: 52px 48px 48px 48px;
+  display: none;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.12);
+  position: relative;
+}
+
+.categories_open {
+  display: block;
+}
+
+.categories__header {
+  @include display(flex, row, space-between);
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.categories__title {
+  @extend %second_level_heading;
+  color: $accent_2;
+}
+
+//при необходимости добавить статус наведения
+.categories__close {
+  background-image: url(../../image/cross.svg);
+  width: 26px;
+  height: 26px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.categories__listBlock {
+  @include display(flex);
+  gap: 40px 100px;
+  max-height: 586px;
+  flex-wrap: wrap;
+  max-width: inherit;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    margin-left: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $placeholder;
+    border-radius: 20px;
+    border: 3px solid transparent;
+  }
+}
+
+.categories__item {
+  max-width: 269px;
+  overflow-wrap: anywhere;
+}
+
+.categories__button {
+  @include button(49px, 320px);
+}
+
+.categories__reset {
+  @extend %button_text;
+  color: $accent_1;
+  margin-right: 32px;
+}
+
+.btn_container {
+  position: absolute;
+  bottom: 48px;
+  right: 48px;
+  display: flex;
+  align-items: center;
+}

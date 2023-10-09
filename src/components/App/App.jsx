@@ -1,24 +1,35 @@
 import style from "./App.module.scss";
 import { Modal } from "../Modal/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { HomePage } from "../../pages/HomePage";
-import { LoginPage } from "../../pages/LoginPage";
-import { RegisterPage } from "../../pages/RegisterPage";
+import { HomePage } from "../../pages/HomePage/HomePage";
+import { LoginPage } from "../../pages/LoginPage/LoginPage";
+import { ForgotPage } from "../../pages/ForgotPage/ForgotPage";
+import { ShopSelectionPage } from "../../pages/ShopSelectionPage";
+import { FavoritesPage } from "../../pages/FavoritesPage";
+import { ProfilePage } from "../../pages/ProfilePage/ProfilePage";
+import { StatisticsPage } from "../../pages/StatisticsPage/StatisticsPage";
+import { useDispatch, useSelector } from "react-redux";
+import { FilterProductCategories } from "../FilterProductCategories/FilterProductCategories";
+import { FAQ } from "../FAQ/FAQ";
+import { NotFound } from "../NotFound/NotFound";
 
 export const App = () => {
-  const [modalActive, setModalActive] = useState(false);
+  // const dispatch = useDispatch();
+  // const { isOpen } = useSelector((store) => store.modal);
+
   return (
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage />} />
+        <Route path="forgot" element={<ForgotPage />} />
+        <Route path="shop" element={<ShopSelectionPage />} />
+        <Route path="favorites" element={<FavoritesPage />} />
+        <Route path="profile" element={<ProfilePage />} />
+        <Route path="statistics" element={<StatisticsPage />} />
       </Routes>
-
-      <Modal active={modalActive} setActive={setModalActive}>
-        <p>lorem</p>
-      </Modal>
+      {/* <Modal active={!isOpen}></Modal> */}
     </>
   );
 };
