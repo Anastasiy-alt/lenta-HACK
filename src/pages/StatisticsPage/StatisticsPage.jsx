@@ -15,7 +15,6 @@ import {
 } from "../../redux/slices/modalSlice";
 import { Modal } from "../../components/Modal/Modal";
 import { DiagramStatistic } from "../../components/DiagramStatistic/DiagramStatistic";
-import { modalOpen } from "../../redux/slices/modalSlice";
 import { FAQ } from "../../components/FAQ/FAQ";
 
 export const StatisticsPage = () => {
