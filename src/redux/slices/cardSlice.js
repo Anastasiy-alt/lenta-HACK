@@ -58,12 +58,10 @@ const cardSlice = createSlice({
     [getForecastData.fulfilled]: (state, action) => {
       state.forecastData = [];
       state.forecastData = action.payload;
-      console.log(action.payload);
     },
     [getStatisticData.fulfilled]: (state, action) => {
       state.statisticData = [];
       state.statisticData = action.payload;
-      console.log(action.payload);
     },
     [getForecastData.rejected]: () => {
       console.log("rejected");

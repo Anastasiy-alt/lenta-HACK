@@ -8,7 +8,6 @@ import { CheckBox } from "../CheckBox/CheckBox";
 export const Form = ({ title, handleClick }) => {
   const dispatch = useDispatch();
   const { form, error, isRemember } = useSelector((store) => store.user);
-  console.log(isRemember);
 
   const formValue = (value) => {
     dispatch(

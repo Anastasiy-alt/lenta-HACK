@@ -35,15 +35,6 @@ const setError = (state, action) => {
   state.error = action.payload;
 };
 
-// const setFulfilled = (state, action) => {
-//   console.log("setFulfilled");
-//   state.status = "resolved";
-//   state.loader = false;
-//   if (typeof action.meta.arg === "function") {
-//     action.meta.arg();
-//   }
-// };
-
 const initialState = {
   form: {
     email: "",
@@ -60,7 +51,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     userLogin(state, action) {
-      console.log();
       state.isAuth = true;
       setCookie("email", action.payload.email);
       setCookie("password", action.payload.password);

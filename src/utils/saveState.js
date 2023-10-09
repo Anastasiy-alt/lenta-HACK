@@ -17,7 +17,7 @@ export const loadState = (stateName) => {
     }
     return JSON.parse(serializedState);
   } catch (e) {
-    // console.log(e);
+    console.log(e);
     return undefined;
   }
 };

@@ -10,7 +10,6 @@ export function getCookie(name) {
 }
 
 export function setCookie(name, value, props) {
-  console.log("set");
   props = { path: "/" };
   let exp = props.expires;
   if (typeof exp == "number" && exp) {
