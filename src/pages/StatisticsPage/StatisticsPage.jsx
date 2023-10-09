@@ -8,12 +8,17 @@ import { FilterBlock } from "../../components/FiltersBolock/FiltersBlock";
 import { SerchString } from "../../components/SerchString/SerchString";
 import { FilterProductCategories } from "../../components/FilterProductCategories/FilterProductCategories";
 import { getCategories } from "../../redux/slices/categoriesSlice";
-import { modalOpen } from "../../redux/slices/modalSlice";
+import {
+  modalOpen,
+  modalToggle,
+  modalType,
+} from "../../redux/slices/modalSlice";
 import { Modal } from "../../components/Modal/Modal";
+import { DiagramStatistic } from "../../components/DiagramStatistic/DiagramStatistic";
 
 export const StatisticsPage = () => {
   const dispatch = useDispatch();
-  const isOpen = useSelector((store) => store.modal.isOpen);
+  const { isOpen, type } = useSelector((store) => store.modal);
 
   const [inHeader, setInHeader] = useState(false);
 
@@ -49,6 +54,7 @@ export const StatisticsPage = () => {
 
   const openModal = () => {
     dispatch(modalOpen());
+    dispatch(modalType("category"));
   };
 
   return (
@@ -70,16 +76,16 @@ export const StatisticsPage = () => {
         </div>
         <CardList />
       </div>
-      {isOpen ? (
-        <Modal active={isOpen}>
-          <FilterProductCategories />
-        </Modal>
-      ) : (
-        ""
-      )}
+      {isOpen &&
+        (type === "category" ? (
+          <Modal active={isOpen} setActive={() => dispatch(modalToggle())}>
+            <FilterProductCategories />
+          </Modal>
+        ) : type === "diagram" ? (
+          <Modal active={isOpen} setActive={() => dispatch(modalToggle())}>
+            <DiagramStatistic />
+          </Modal>
+        ) : null)}
     </>
   );
 };
-{
-  /* <CardList /> */
-}

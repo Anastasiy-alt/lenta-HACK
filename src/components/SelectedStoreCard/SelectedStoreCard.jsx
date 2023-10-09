@@ -32,7 +32,7 @@ export const SelectedStoreCard = () => {
         </div>
         <button
           className={styles.change_button}
-          onClick={() => navigate("shop")}
+          onClick={() => navigate("/shop")}
         >
           Изменить
         </button>

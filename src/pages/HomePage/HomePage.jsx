@@ -8,14 +8,19 @@ import { SelectedStoreCard } from "../../components/SelectedStoreCard/SelectedSt
 import { FilterProductCategories } from "../../components/FilterProductCategories/FilterProductCategories";
 import { Modal } from "../../components/Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { modalOpen } from "../../redux/slices/modalSlice";
+import {
+  modalOpen,
+  modalType,
+  modalToggle,
+} from "../../redux/slices/modalSlice";
 import { getCategories } from "../../redux/slices/categoriesSlice";
 import { CardList } from "../../components/CardList/CardList";
+import { DiagramStatistic } from "../../components/DiagramStatistic/DiagramStatistic";
 
 export const HomePage = () => {
   const dispatch = useDispatch();
 
-  const isOpen = useSelector((store) => store.modal.isOpen);
+  const { isOpen, type } = useSelector((store) => store.modal);
 
   const [inHeader, setInHeader] = useState(false);
 
@@ -52,6 +57,7 @@ export const HomePage = () => {
 
   const openModal = () => {
     dispatch(modalOpen());
+    dispatch(modalType("category"));
   };
 
   return (
@@ -73,13 +79,16 @@ export const HomePage = () => {
         </div>
         <CardList />
       </div>
-      {isOpen ? (
-        <Modal active={isOpen}>
-          <FilterProductCategories />
-        </Modal>
-      ) : (
-        ""
-      )}
+      {isOpen &&
+        (type === "category" ? (
+          <Modal active={isOpen} setActive={() => dispatch(modalToggle())}>
+            <FilterProductCategories />
+          </Modal>
+        ) : type === "diagram" ? (
+          <Modal active={isOpen} setActive={() => dispatch(modalToggle())}>
+            <DiagramStatistic />
+          </Modal>
+        ) : null)}
     </>
   );
 };

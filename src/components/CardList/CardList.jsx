@@ -3,9 +3,12 @@ import styles from "./cardList.module.scss";
 import { products } from "../../utils/mockData";
 import { CardComponentStat } from "../CardComponentStat/CardComponentStat";
 import { useSelector } from "react-redux";
+import { CardComponentProg } from "../CardComponentProg/CardComponentProg";
+import { useLocation } from "react-router-dom";
 
 export const CardList = () => {
   const { cardList } = useSelector((store) => store.card);
+  const location = useLocation();
 
   const groupedProducts =
     cardList &&
@@ -32,8 +35,13 @@ export const CardList = () => {
         };
       }
 
-      // Добавьте продукт в соответствующую группу и категорию
-      acc[groupKey].categories[categoryKey].products.push(product);
+      const productExists = acc[groupKey].categories[categoryKey].products.some(
+        (existingProduct) => existingProduct.name === product.name
+      );
+
+      if (!productExists) {
+        acc[groupKey].categories[categoryKey].products.push(product);
+      }
 
       return acc;
     }, {});
@@ -43,6 +51,7 @@ export const CardList = () => {
     categories: Object.values(group.categories),
   }));
 
+  console.log(groupedProductsArray);
   return (
     <>
       <div className={styles.cardList}>
@@ -58,11 +67,17 @@ export const CardList = () => {
                       {category.category}
                     </h3>
                     <ul className={styles.category_card_сontainer}>
-                      {category.products.map((product, k) => (
-                        <li key={k}>
-                          <CardComponentStat title={product.sku} />
-                        </li>
-                      ))}
+                      {category.products.map((product, k) =>
+                        location.pathname === "/" ? (
+                          <li key={k}>
+                            <CardComponentProg title={product.sku} />
+                          </li>
+                        ) : (
+                          <li key={k}>
+                            <CardComponentStat title={product.sku} />
+                          </li>
+                        )
+                      )}
                     </ul>
                   </li>
                 ))}

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import styles from "./CardComponentStat.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { modalOpen, modalType } from "../../redux/slices/modalSlice";
+import { setCardName } from "../../redux/slices/cardSlice";
 
 const wape = 13;
 const max = 16;
@@ -7,21 +10,30 @@ const min = 10;
 // const title = "Крылышки куриные гриль по-мексикански, весовые, Россия";
 
 export const CardComponentStat = ({ title }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isToggle, setIsToggle] = useState(false);
   const [selectedValue, setSelectedValue] = useState("12 мес");
+  const dispatch = useDispatch();
+  const { isOpen } = useSelector((store) => store.modal);
+
   const dropdownValues = {
     "12 мес": ["7 нед", "14 дн"],
     "7 нед": ["12 мес", "14 дн"],
     "14 дн": ["12 мес", "7 нед"],
   };
 
+  const openDiagram = () => {
+    dispatch(modalOpen());
+    dispatch(modalType("diagram"));
+    dispatch(setCardName(title));
+  };
+
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+    setIsToggle(!isToggle);
   };
 
   const selectValue = (value) => {
     setSelectedValue(value);
-    setIsOpen(false);
+    setIsToggle(false);
   };
 
   const remainingValues = dropdownValues[selectedValue];
@@ -35,7 +47,7 @@ export const CardComponentStat = ({ title }) => {
   //
 
   return (
-    <article className={styles.card}>
+    <article className={styles.card} onClick={openDiagram}>
       <div className={styles.card__header}>
         <h3 className={styles.card__title}>{title}</h3>
         <button
@@ -50,10 +62,10 @@ export const CardComponentStat = ({ title }) => {
             {selectedValue}
             <button className={styles.dropdown__button}></button>
           </div>
-          {isOpen && (
+          {isToggle && (
             <ul
               className={`${styles.dropdown__list} ${
-                isOpen && styles.dropdown__list_open
+                isToggle && styles.dropdown__list_open
               }`}
             >
               {remainingValues.map((value) => (
