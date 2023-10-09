@@ -15,10 +15,22 @@ import {
 } from "../../redux/slices/modalSlice";
 import { getCategories } from "../../redux/slices/categoriesSlice";
 import { CardList } from "../../components/CardList/CardList";
+import { products } from "../../utils/mockData";
 import { DiagramStatistic } from "../../components/DiagramStatistic/DiagramStatistic";
 import { FAQ } from "../../components/FAQ/FAQ";
 
 export const HomePage = () => {
+
+  const [searchText, setSearchText] = useState('');
+  const searchHandler = (text) => {
+    setSearchText(text.toLowerCase());
+  };
+  const filteredProducts = searchText
+  ? products.filter(product =>
+      product.sku.toLowerCase().includes(searchText)
+    )
+  : products;
+
   const dispatch = useDispatch();
 
   const { isOpen, type } = useSelector((store) => store.modal);
@@ -72,7 +84,7 @@ export const HomePage = () => {
         <div className={styles.container}>
           <h1 className={styles.main_title}>Прогноз спроса по выбранным ТК</h1>
           <div className={styles.category_container}>
-            <SerchString ref={searchRef} />
+            <SerchString ref={searchRef} onSearch={searchHandler} />
             <button className={styles.category_btn} onClick={openModal}>
               Выбрать разделы
             </button>
@@ -82,7 +94,7 @@ export const HomePage = () => {
         <div className={styles.selected_store}>
           <SelectedStoreCard></SelectedStoreCard>
         </div>
-        <CardList />
+        <CardList products={filteredProducts}/>
         <div className={styles.page__FAQblock}>
           <div className={styles.page__FAQhover}>Техническая поддержка</div>
           <button

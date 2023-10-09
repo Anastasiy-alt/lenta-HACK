@@ -1,9 +1,18 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import styles from "./serchString.module.scss";
-import { useState } from "react";
 
-export const SerchString = forwardRef((props, ref) => {
-  const { inHeader } = props;
+export const SerchString = forwardRef(({ onSearch, inHeader }, ref) => {
+
+  const find = (event) => {
+    event.preventDefault();
+    const text = event.target.elements.search.value;
+    if (text === '') { // проверям, пустой ли input
+      onSearch(''); // вызываем с пустым значением, если поле пустое
+    } else {
+      onSearch(text); // иначе со значением из инпута
+    }
+  };
+
   const [isFocused, setIsFocused] = useState(false);
   const [hasText, setHasText] = useState(``);
 
@@ -17,46 +26,41 @@ export const SerchString = forwardRef((props, ref) => {
 
   const clear = () => {
     setHasText("");
-  };
-
-  const find = () => {
-    setIsFocused(false);
-    console.log("dwq");
+    onSearch(''); // подразумеваем, что очистка поля также приводит к отображению всех карточек
   };
 
   return (
     <div
       className={styles.container}
-      onFocus={handleFocus}
       id="searchString"
       ref={ref}
     >
-      <input
-        className={inHeader ? styles.serchString_header : styles.serchString}
-        type="text"
-        placeholder="Поиск товара"
-        onChange={handleChange}
-        value={hasText}
-      ></input>
-      {hasText.length !== 0 && (
-        <div
-          className={
-            hasText.length && isFocused
-              ? styles.button_container
-              : styles.without_searchBtn_container
-          }
-        >
-          <button className={styles.clear_button} onClick={clear}></button>
-          <button
+      <form onSubmit={find}>
+        <input
+          name="search"
+          className={inHeader ? styles.serchString_header : styles.serchString}
+          type="text"
+          placeholder="Поиск товара"
+          onFocus={handleFocus}
+          onChange={handleChange} // обработчик изменений значение инпута
+          value={hasText} // используем значение из состояния
+        />
+        {hasText.length !== 0 && (
+          <div
             className={
-              isFocused ? styles.search_button : styles.search_button_disable
+              hasText.length && isFocused
+                ? styles.button_container
+                : styles.without_searchBtn_container
             }
-            onClick={find}
           >
-            Найти
-          </button>
-        </div>
-      )}
+            <button className={styles.clear_button} onClick={clear}></button>
+            <button type="submit" className={isFocused ? styles.search_button : styles.search_button_disable}> 
+              Найти
+            </button>
+          </div>
+        )}
+      </form>
     </div>
   );
 });
+

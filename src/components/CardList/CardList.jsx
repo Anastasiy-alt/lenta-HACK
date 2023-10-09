@@ -6,17 +6,21 @@ import { useSelector } from "react-redux";
 import { CardComponentProg } from "../CardComponentProg/CardComponentProg";
 import { useLocation } from "react-router-dom";
 
-export const CardList = () => {
-  const { cardList } = useSelector((store) => store.card);
+export const CardList = ({products}) => {
+   const { cardList } = useSelector((store) => store.card);
   const location = useLocation();
+  
+  const filteredGroupedProducts = products.reduce((acc, product) => {
+    // Создайте ключ для группы
+    const groupKey = product.group;
+
 
   const groupedProducts =
     cardList &&
     cardList.reduce((acc, product) => {
-      // Создайте ключ для группы
+      
       const groupKey = product.group;
 
-      // Если группа еще не существует, создайте её
       if (!acc[groupKey]) {
         acc[groupKey] = {
           group: product.group,
@@ -24,10 +28,8 @@ export const CardList = () => {
         };
       }
 
-      // Создайте ключ для категории внутри группы
       const categoryKey = product.category;
 
-      // Если категория еще не существует внутри группы, создайте её
       if (!acc[groupKey].categories[categoryKey]) {
         acc[groupKey].categories[categoryKey] = {
           category: product.category,
@@ -46,17 +48,16 @@ export const CardList = () => {
       return acc;
     }, {});
 
-  const groupedProductsArray = Object.values(groupedProducts).map((group) => ({
+  const filteredGroupedProductsArray = Object.values(filteredGroupedProducts).map((group) => ({
     ...group,
     categories: Object.values(group.categories),
   }));
 
-  console.log(groupedProductsArray);
   return (
     <>
       <div className={styles.cardList}>
-        {groupedProductsArray &&
-          groupedProductsArray.map((group, i) => (
+        {filteredGroupedProductsArray &&
+          filteredGroupedProductsArray.map((group, i) => (
             <ul className={styles.group} key={i}>
               <h2 className={styles.group_title}>{group.group}</h2>
 
