@@ -1,6 +1,7 @@
 @import "../../styles/common/mixins";
 @import "../../styles/common/color";
 @import "../../styles/common/typography";
+@import "../../styles/common/variables";
 
 .container {
   @include display(flex, column);
@@ -30,4 +31,46 @@
   position: absolute;
   top: 128px;
   left: 70px;
+}
+
+.page__FAQhover {
+  display: none;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: $auth-input-bcg-color;
+}
+
+.page__FAQblock {
+  position: fixed;
+  bottom: 40px;
+  right: 70px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  align-items: flex-end;
+  width: fit-content;
+  height: fit-content;
+}
+
+.page__FAQbutton {
+  background-image: url(../../image/HelpFaq.svg);
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+}
+
+.page__FAQblock:hover .page__FAQhover {
+  display: flex;
+}
+
+.page__back {
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.36);
 }

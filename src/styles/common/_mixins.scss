@@ -9,12 +9,14 @@
   color: $color;
 }
 
+//настройка dispaly параметров
 @mixin display($display: block, $flexDir: row, $justCont: flex-start) {
   display: $display;
   flex-direction: $flexDir;
   justify-content: $justCont;
 }
 
+//компонент input
 @mixin input($width: 410px) {
   border: 1px solid transparent;
   border-radius: 12px;
@@ -37,6 +39,7 @@
   }
 }
 
+//готовый компонент button
 @mixin button($height: 40px, $width: null) {
   width: $width;
   height: $height;

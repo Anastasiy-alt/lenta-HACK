@@ -16,11 +16,16 @@ import {
 import { getCategories } from "../../redux/slices/categoriesSlice";
 import { CardList } from "../../components/CardList/CardList";
 import { DiagramStatistic } from "../../components/DiagramStatistic/DiagramStatistic";
+import { FAQ } from "../../components/FAQ/FAQ";
 
 export const HomePage = () => {
   const dispatch = useDispatch();
 
   const { isOpen, type } = useSelector((store) => store.modal);
+  const [isOpenFAQ, setIsOpenFAQ] = useState(false);
+  const toggleOpenFAQ = () => {
+    setIsOpenFAQ(!isOpenFAQ);
+  };
 
   const [inHeader, setInHeader] = useState(false);
 
@@ -78,6 +83,13 @@ export const HomePage = () => {
           <SelectedStoreCard></SelectedStoreCard>
         </div>
         <CardList />
+        <div className={styles.page__FAQblock}>
+          <div className={styles.page__FAQhover}>Техническая поддержка</div>
+          <button
+            className={styles.page__FAQbutton}
+            onClick={toggleOpenFAQ}
+          ></button>
+        </div>
       </div>
       {isOpen &&
         (type === "category" ? (
@@ -89,6 +101,11 @@ export const HomePage = () => {
             <DiagramStatistic />
           </Modal>
         ) : null)}
+      <div
+        className={`${isOpenFAQ && `${styles.page__back}`}`}
+        onClick={toggleOpenFAQ}
+      ></div>
+      {isOpenFAQ && <FAQ close={toggleOpenFAQ} />}
     </>
   );
 };

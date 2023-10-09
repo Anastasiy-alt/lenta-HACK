@@ -9,7 +9,7 @@ export const ForgotPage = () => {
   const { isOpen } = useSelector((store) => store.modal);
   return (
     <div className={styles.bg}>
-      <Modal active={isOpen}>
+      <Modal active={!isOpen}>
         <Forgot />
       </Modal>
     </div>
