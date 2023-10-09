@@ -15,11 +15,10 @@ import {
 } from "../../redux/slices/modalSlice";
 import { Modal } from "../../components/Modal/Modal";
 import { DiagramStatistic } from "../../components/DiagramStatistic/DiagramStatistic";
-import { modalOpen } from "../../redux/slices/modalSlice";
 import { FAQ } from "../../components/FAQ/FAQ";
 
 export const StatisticsPage = () => {
-  const [isOpenFAQ, setIsOpenFAQ] = useState(false)
+  const [isOpenFAQ, setIsOpenFAQ] = useState(false);
   const toggleOpenFAQ = () => {
     setIsOpenFAQ(!isOpenFAQ);
   };
@@ -82,7 +81,10 @@ export const StatisticsPage = () => {
         <CardList />
         <div className={styles.page__FAQblock}>
           <div className={styles.page__FAQhover}>Техническая поддержка</div>
-          <button className={styles.page__FAQbutton} onClick={toggleOpenFAQ}></button>
+          <button
+            className={styles.page__FAQbutton}
+            onClick={toggleOpenFAQ}
+          ></button>
         </div>
       </div>
       {isOpen &&
@@ -95,13 +97,11 @@ export const StatisticsPage = () => {
             <DiagramStatistic />
           </Modal>
         ) : null)}
-      <div className={`${isOpenFAQ && `${styles.page__back}`}`} onClick={toggleOpenFAQ}></div>
-      {isOpenFAQ && (
-        <FAQ
-          close={toggleOpenFAQ} />
-      )
-
-      }
+      <div
+        className={`${isOpenFAQ && `${styles.page__back}`}`}
+        onClick={toggleOpenFAQ}
+      ></div>
+      {isOpenFAQ && <FAQ close={toggleOpenFAQ} />}
     </>
   );
 };
