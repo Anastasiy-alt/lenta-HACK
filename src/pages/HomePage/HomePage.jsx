@@ -11,8 +11,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { modalOpen } from "../../redux/slices/modalSlice";
 import { getCategories } from "../../redux/slices/categoriesSlice";
 import { CardList } from "../../components/CardList/CardList";
+import { products } from "../../utils/mockData";
 
 export const HomePage = () => {
+
+  const [searchText, setSearchText] = useState('');
+  const searchHandler = (text) => {
+    setSearchText(text.toLowerCase());
+  };
+  const filteredProducts = searchText
+  ? products.filter(product =>
+      product.sku.toLowerCase().includes(searchText)
+    )
+  : products;
+
   const dispatch = useDispatch();
 
   const isOpen = useSelector((store) => store.modal.isOpen);
@@ -61,7 +73,7 @@ export const HomePage = () => {
         <div className={styles.container}>
           <h1 className={styles.main_title}>Прогноз спроса по выбранным ТК</h1>
           <div className={styles.category_container}>
-            <SerchString ref={searchRef} />
+            <SerchString ref={searchRef} onSearch={searchHandler} />
             <button className={styles.category_btn} onClick={openModal}>
               Выбрать разделы
             </button>
@@ -71,7 +83,7 @@ export const HomePage = () => {
         <div className={styles.selected_store}>
           <SelectedStoreCard></SelectedStoreCard>
         </div>
-        <CardList />
+        <CardList products={filteredProducts} />
       </div>
       {isOpen ? (
         <Modal active={isOpen}>

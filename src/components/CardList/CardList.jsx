@@ -3,8 +3,8 @@ import styles from "./cardList.module.scss";
 import { products } from "../../utils/mockData";
 import { CardComponentStat } from "../CardComponentStat/CardComponentStat";
 
-export const CardList = () => {
-  const groupedProducts = products.reduce((acc, product) => {
+export const CardList = ({products}) => {
+  const filteredGroupedProducts = products.reduce((acc, product) => {
     // Создайте ключ для группы
     const groupKey = product.group;
 
@@ -33,16 +33,17 @@ export const CardList = () => {
     return acc;
   }, {});
 
-  const groupedProductsArray = Object.values(groupedProducts).map((group) => ({
+  const filteredGroupedProductsArray = Object.values(filteredGroupedProducts).map((group) => ({
     ...group,
     categories: Object.values(group.categories),
   }));
 
+
   return (
     <>
       <div className={styles.cardList}>
-        {groupedProductsArray &&
-          groupedProductsArray.map((group, i) => (
+        {filteredGroupedProductsArray &&
+          filteredGroupedProductsArray.map((group, i) => (
             <ul className={styles.group} key={i}>
               <h2 className={styles.group_title}>{`group ${group.group}`}</h2>
 
